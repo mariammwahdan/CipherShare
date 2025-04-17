@@ -1,0 +1,16 @@
+from enum import Enum
+
+class MessageType(Enum):
+    CONNECT = "CONNECT"
+    DISCONNECT = "DISCONNECT"
+    UPLOAD = "UPLOAD"
+    DOWNLOAD = "DOWNLOAD"
+    LIST_FILES = "LIST_FILES"
+    REMOVE_FILE = "REMOVE_FILE"
+    FILE_TRANSFER = "FILE_TRANSFER"
+    ERROR = "ERROR"
+    SUCCESS = "SUCCESS"
+
+class ClientState(Enum):
+    ONLINE = "ONLINE"
+    OFFLINE = "OFFLINE"
