@@ -1,0 +1,28 @@
+{
+    "files": {
+        "config.json": [
+            {
+                "host": "localhost",
+                "port": 5006
+            },
+            {
+                "host": "localhost",
+                "port": 5007
+            },
+            {
+                "host": "localhost",
+                "port": 5008
+            }
+        ],
+        "notes.md": [
+            {
+                "host": "localhost",
+                "port": 5008
+            },
+            {
+                "host": "localhost",
+                "port": 5007
+            }
+        ]
+    }
+}

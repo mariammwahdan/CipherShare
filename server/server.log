@@ -1,0 +1,34 @@
+2025-04-17 23:30:42,530 - INFO - Server started on localhost:5000
+2025-04-17 23:36:39,661 - INFO - New connection from ('127.0.0.1', 50316)
+2025-04-17 23:36:39,661 - INFO - Client connected: localhost:5001
+2025-04-17 23:47:17,266 - ERROR - Error handling client ('127.0.0.1', 50316): [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-17 23:48:12,677 - INFO - New connection from ('127.0.0.1', 50399)
+2025-04-17 23:48:12,678 - INFO - Client connected: localhost:5001
+2025-04-17 23:48:42,417 - ERROR - Error handling client ('127.0.0.1', 50399): [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-17 23:48:57,399 - INFO - New connection from ('127.0.0.1', 50400)
+2025-04-17 23:48:57,401 - INFO - Client connected: localhost:5005
+2025-04-17 23:56:40,272 - INFO - Server started on localhost:5000
+2025-04-17 23:56:54,129 - INFO - New connection from ('127.0.0.1', 63415)
+2025-04-17 23:56:54,131 - INFO - Client connected: localhost:5005
+2025-04-17 23:58:17,738 - INFO - Client connected: localhost:5005
+2025-04-17 23:58:28,500 - INFO - Client connected: localhost:5005
+2025-04-17 23:59:30,194 - INFO - New connection from ('127.0.0.1', 63432)
+2025-04-17 23:59:30,195 - INFO - Added file config.json for client localhost:5006
+2025-04-17 23:59:30,195 - INFO - Client connected: localhost:5006
+2025-04-17 23:59:42,110 - INFO - Download request: config.json by ('127.0.0.1', 63432) from {'host': 'localhost', 'port': 5006}
+2025-04-18 00:02:41,917 - INFO - Server started on localhost:5000
+2025-04-18 00:03:02,427 - INFO - New connection from ('127.0.0.1', 63462)
+2025-04-18 00:03:02,428 - INFO - Added file config.json for client localhost:5007
+2025-04-18 00:03:02,428 - INFO - Client connected: localhost:5007
+2025-04-18 00:04:03,762 - INFO - Client connected: localhost:5007
+2025-04-18 00:04:14,049 - INFO - Client connected: localhost:5007
+2025-04-18 00:05:06,850 - INFO - New connection from ('127.0.0.1', 63471)
+2025-04-18 00:05:06,851 - INFO - Added file config.json for client localhost:5008
+2025-04-18 00:05:06,858 - INFO - Added file notes.md for client localhost:5008
+2025-04-18 00:05:06,858 - INFO - Client connected: localhost:5008
+2025-04-18 00:05:26,818 - INFO - Download request: notes.md by ('127.0.0.1', 63471) from {'host': 'localhost', 'port': 5008}
+2025-04-18 00:06:06,336 - INFO - Added file notes.md for client localhost:5007
+2025-04-18 00:06:06,336 - INFO - Client connected: localhost:5007
+2025-04-18 00:06:12,724 - INFO - Client connected: localhost:5007
+2025-04-18 00:06:47,526 - ERROR - Error handling client ('127.0.0.1', 63462): [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-18 00:06:48,503 - ERROR - Error handling client ('127.0.0.1', 63471): [WinError 10054] An existing connection was forcibly closed by the remote host
