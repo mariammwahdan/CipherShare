@@ -1,9 +1,0 @@
-{
-    "name": "Test Config",
-    "version": "1.0",
-    "settings": {
-        "enabled": true,
-        "max_size": 1024,
-        "description": "Sample configuration file"
-    }
-}

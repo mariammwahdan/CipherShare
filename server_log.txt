@@ -1,0 +1,34 @@
+2025-04-25 21:24:53,572 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-04-25 21:25:34,240 - CipherShare Server - INFO - New connection from ('127.0.0.1', 54328)
+2025-04-25 21:27:01,628 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 54328)
+2025-04-25 21:27:06,387 - CipherShare Server - INFO - New connection from ('127.0.0.1', 54342)
+2025-04-25 21:33:34,628 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 54342)
+2025-04-25 21:34:52,331 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-04-25 21:36:50,240 - CipherShare Server - INFO - New connection from ('127.0.0.1', 54509)
+2025-04-25 21:36:59,574 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 54509)
+2025-04-25 21:40:05,362 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-04-25 21:43:03,246 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-04-25 21:43:52,317 - CipherShare Server - INFO - New connection from ('127.0.0.1', 54632)
+2025-04-25 21:44:21,182 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 54632)
+2025-04-25 21:47:25,671 - CipherShare Server - INFO - New connection from ('127.0.0.1', 54669)
+2025-04-25 21:48:01,037 - CipherShare Server - INFO - New connection from ('127.0.0.1', 54679)
+2025-04-25 21:48:08,206 - CipherShare Server - INFO - New connection from ('127.0.0.1', 54681)
+2025-04-25 21:53:05,490 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 54679)
+2025-04-25 21:53:55,980 - CipherShare Server - INFO - New connection from ('127.0.0.1', 54752)
+2025-04-25 21:54:06,209 - CipherShare Server - INFO - User 'ahmed' registered successfully from ('127.0.0.1', 54752)
+2025-04-25 21:55:16,810 - CipherShare Server - INFO - User 'ahmed' uploaded file 'test.txt'
+2025-04-25 21:55:41,844 - CipherShare Server - INFO - User 'ahmed' removed file 'test.txt'
+2025-04-25 21:56:04,935 - CipherShare Server - INFO - User 'ahmed' uploaded file 'test.txt'
+2025-04-25 21:56:38,674 - CipherShare Server - INFO - New connection from ('127.0.0.1', 54788)
+2025-04-25 21:56:53,831 - CipherShare Server - INFO - User 'shahd' registered successfully from ('127.0.0.1', 54788)
+2025-04-25 21:57:06,211 - CipherShare Server - ERROR - Failed to notify file owner: [WinError 10061] No connection could be made because the target machine actively refused it
+2025-04-25 21:57:42,616 - CipherShare Server - INFO - User 'ahmed' logged in successfully from ('127.0.0.1', 54681)
+2025-04-25 21:58:11,429 - CipherShare Server - INFO - User 'ahmed' uploaded file 'test.txt'
+2025-04-25 21:58:32,350 - CipherShare Server - ERROR - Failed to notify file owner: [WinError 10061] No connection could be made because the target machine actively refused it
+2025-04-25 21:58:47,977 - CipherShare Server - ERROR - Error handling client ('127.0.0.1', 54669): [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-25 21:58:47,978 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 54669)
+2025-04-25 21:58:49,650 - CipherShare Server - ERROR - Error handling client ('127.0.0.1', 54752): [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-25 21:58:49,652 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 54752)
+2025-04-25 21:59:44,518 - CipherShare Server - INFO - User 'ahmed' removed file 'test.txt'
+2025-04-25 22:00:01,413 - CipherShare Server - INFO - User 'ahmed' uploaded file 'test.txt'
+2025-04-25 22:00:14,006 - CipherShare Server - ERROR - Failed to notify file owner: [WinError 10061] No connection could be made because the target machine actively refused it
