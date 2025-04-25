@@ -119,3 +119,155 @@
 2025-04-25 22:00:03,401 - CipherShare Client - INFO - Session is valid
 2025-04-25 22:00:10,342 - CipherShare Client - INFO - Retrieved 1 available files
 2025-04-25 22:00:14,013 - CipherShare Client - ERROR - Download request failed: File "test.txt" not found or no online clients have it
+2025-04-25 22:05:01,450 - CipherShare Client - INFO - Loaded 1 shared files
+2025-04-25 22:05:01,454 - CipherShare Client - INFO - Connected to server at localhost:5555
+2025-04-25 22:05:01,454 - CipherShare Client - INFO - Listening for file transfers on port 54889
+2025-04-25 22:05:01,455 - CipherShare Client - INFO - Starting to listen for file transfers on port 54889
+2025-04-25 22:05:04,657 - CipherShare Client - INFO - Loaded 1 shared files
+2025-04-25 22:05:04,661 - CipherShare Client - INFO - Connected to server at localhost:5555
+2025-04-25 22:05:04,661 - CipherShare Client - INFO - Listening for file transfers on port 54891
+2025-04-25 22:05:04,662 - CipherShare Client - INFO - Starting to listen for file transfers on port 54891
+2025-04-25 22:05:13,079 - CipherShare Client - INFO - Logged in as shahd
+2025-04-25 22:05:15,877 - CipherShare Client - INFO - Session is valid
+2025-04-25 22:05:34,299 - CipherShare Client - INFO - Logged in as ahmed
+2025-04-25 22:05:35,179 - CipherShare Client - INFO - Session is valid
+2025-04-25 22:05:39,781 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 22:05:41,231 - CipherShare Client - INFO - Session is valid
+2025-04-25 22:05:50,023 - CipherShare Client - INFO - File 'test.txt' uploaded successfully
+2025-04-25 22:05:51,400 - CipherShare Client - INFO - Session is valid
+2025-04-25 22:05:55,342 - CipherShare Client - INFO - Retrieved 1 available files
+2025-04-25 22:05:58,811 - CipherShare Client - ERROR - Download request failed: File "test.txt" found but all clients are unreachable
+2025-04-25 22:11:07,824 - CipherShare Client - INFO - Loaded 1 shared files
+2025-04-25 22:11:07,828 - CipherShare Client - INFO - Connected to server at localhost:5555
+2025-04-25 22:11:07,829 - CipherShare Client - INFO - Listening for file transfers on port 55004
+2025-04-25 22:11:07,829 - CipherShare Client - INFO - Starting to listen for file transfers on port 55004
+2025-04-25 22:11:16,622 - CipherShare Client - INFO - Logged in as ahmed
+2025-04-25 22:11:18,032 - CipherShare Client - INFO - Session is valid
+2025-04-25 22:11:26,353 - CipherShare Client - INFO - Loaded 1 shared files
+2025-04-25 22:11:26,358 - CipherShare Client - INFO - Connected to server at localhost:5555
+2025-04-25 22:11:26,358 - CipherShare Client - INFO - Listening for file transfers on port 55006
+2025-04-25 22:11:26,358 - CipherShare Client - INFO - Starting to listen for file transfers on port 55006
+2025-04-25 22:11:33,277 - CipherShare Client - INFO - Logged in as shahd
+2025-04-25 22:11:33,989 - CipherShare Client - INFO - Session is valid
+2025-04-25 22:11:47,633 - CipherShare Client - INFO - File 'test.txt' uploaded successfully
+2025-04-25 22:11:48,497 - CipherShare Client - INFO - Session is valid
+2025-04-25 22:11:54,234 - CipherShare Client - INFO - Retrieved 1 available files
+2025-04-25 22:11:55,522 - CipherShare Client - INFO - Received connection from ('127.0.0.1', 55015)
+2025-04-25 22:11:55,522 - CipherShare Client - INFO - Received file source information: {'owner': 'shahd', 'ip': '127.0.0.1', 'port': 55006}
+2025-04-25 22:11:55,522 - CipherShare Client - INFO - Handling file transfer request from ('127.0.0.1', 55015)
+2025-04-25 22:11:55,522 - CipherShare Client - INFO - Received file transfer request: {'type': 'FILE_INFO', 'requester_ip': '127.0.0.1', 'requester_port': 55003, 'requester_username': 'ahmed', 'filename': 'test.txt'}
+2025-04-25 22:11:55,522 - CipherShare Client - INFO - File request notification: ahmed at 127.0.0.1:55003 will download 'test.txt'
+2025-04-25 22:11:55,522 - CipherShare Client - INFO - Connected to file source at 127.0.0.1:55006
+2025-04-25 22:11:55,523 - CipherShare Client - INFO - Sent file transfer request
+27.0.0.1', 55016)
+2025-04-25 22:11:55,523 - CipherShare Client - INFO - Closed connection with ('127.0.0.1', 55015)
+2025-04-25 22:11:55,523 - CipherShare Client - INFO - Handling file transfer request from ('127.0.0.1', 55016)
+2025-04-25 22:11:55,523 - CipherShare Client - INFO - Received file transfer request: {'type': 'FILE_TRANSFER', 'filename': 'test.txt', 'requester_username': 'ahmed'}
+2025-04-25 22:11:55,523 - CipherShare Client - INFO - File transfer request for 'test.txt' from ahmed
+2025-04-25 22:11:55,523 - CipherShare Client - INFO - Sending file 'test.txt' (22 bytes) to ahmed
+2025-04-25 22:11:55,524 - CipherShare Client - INFO - File 'test.txt' sent to ahmed
+2025-04-25 22:11:55,524 - CipherShare Client - INFO - Received file data: 22 bytes
+2025-04-25 22:11:55,524 - CipherShare Client - INFO - Closed connection with ('127.0.0.1', 55016)
+2025-04-25 22:11:55,532 - CipherShare Client - INFO - File 'test.txt' uploaded successfully
+2025-04-25 22:11:55,532 - CipherShare Client - INFO - File 'test.txt' downloaded successfully
+2025-04-25 22:11:59,475 - CipherShare Client - INFO - Session is valid
+2025-04-25 22:12:07,172 - CipherShare Client - INFO - Disconnected from server
+2025-04-25 22:12:25,332 - CipherShare Client - INFO - Disconnected from server
+2025-04-25 22:56:04,784 - CipherShare Client - INFO - Loaded 1 shared files
+2025-04-25 22:56:04,787 - CipherShare Client - INFO - Connected to server at localhost:5555
+2025-04-25 22:56:04,787 - CipherShare Client - INFO - Listening for file transfers on port 55815
+2025-04-25 22:56:04,788 - CipherShare Client - INFO - Starting to listen for file transfers on port 55815
+2025-04-25 22:57:49,981 - CipherShare Client - ERROR - Login failed: Invalid username or password
+2025-04-25 22:58:13,691 - CipherShare Client - INFO - Registered as ahmedbaher22
+2025-04-25 22:58:33,863 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:01:37,800 - CipherShare Client - INFO - Loaded 1 shared files
+2025-04-25 23:01:37,804 - CipherShare Client - INFO - Connected to server at localhost:5555
+2025-04-25 23:01:37,805 - CipherShare Client - INFO - Listening for file transfers on port 55926
+2025-04-25 23:01:37,805 - CipherShare Client - INFO - Starting to listen for file transfers on port 55926
+2025-04-25 23:02:36,383 - CipherShare Client - INFO - Logged in as shahd
+2025-04-25 23:02:40,753 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:03:58,975 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 23:04:01,485 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:04:27,228 - CipherShare Client - INFO - File 'test.txt' uploaded successfully
+2025-04-25 23:04:34,607 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:05:14,768 - CipherShare Client - WARNING - Session is invalid or expired
+2025-04-25 23:05:37,937 - CipherShare Client - ERROR - Login failed: Invalid username or password
+2025-04-25 23:05:54,372 - CipherShare Client - INFO - Logged in as ahmedbaher22
+2025-04-25 23:05:56,692 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:06:02,998 - CipherShare Client - INFO - Retrieved 1 available files
+2025-04-25 23:06:05,544 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:06:07,435 - CipherShare Client - INFO - Retrieved 1 available files
+2025-04-25 23:06:26,389 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:06:28,916 - CipherShare Client - INFO - Retrieved 1 available files
+2025-04-25 23:06:49,325 - CipherShare Client - INFO - Received connection from ('127.0.0.1', 55988)
+2025-04-25 23:06:49,325 - CipherShare Client - INFO - Received file source information: {'owner': 'shahd', 'ip': '127.0.0.1', 'port': 55926}
+2025-04-25 23:06:49,325 - CipherShare Client - INFO - Connected to file source at 127.0.0.1:55926
+2025-04-25 23:06:49,325 - CipherShare Client - INFO - Handling file transfer request from ('127.0.0.1', 55988)
+2025-04-25 23:06:49,325 - CipherShare Client - INFO - Sent file transfer request
+2025-04-25 23:06:49,325 - CipherShare Client - INFO - Received connection from ('127.0.0.1', 55989)
+2025-04-25 23:06:49,325 - CipherShare Client - INFO - Received file transfer request: {'type': 'FILE_INFO', 'requester_ip': '127.0.0.1', 'requester_port': 55814, 'requester_username': 'ahmedbaher22', 'filename': 'test.txt'}
+2025-04-25 23:06:49,326 - CipherShare Client - INFO - Handling file transfer request from ('127.0.0.1', 55989)
+2025-04-25 23:06:49,326 - CipherShare Client - INFO - File request notification: ahmedbaher22 at 127.0.0.1:55814 will download 'test.txt'
+2025-04-25 23:06:49,326 - CipherShare Client - INFO - Received file transfer request: {'type': 'FILE_TRANSFER', 'filename': 'test.txt', 'requester_username': 'ahmedbaher22'}
+2025-04-25 23:06:49,326 - CipherShare Client - INFO - Closed connection with ('127.0.0.1', 55988)
+2025-04-25 23:06:49,326 - CipherShare Client - INFO - File transfer request for 'test.txt' from ahmedbaher22
+2025-04-25 23:06:49,328 - CipherShare Client - INFO - Sending file 'test.txt' (22 bytes) to ahmedbaher22
+2025-04-25 23:06:49,328 - CipherShare Client - INFO - File 'test.txt' sent to ahmedbaher22
+2025-04-25 23:06:49,328 - CipherShare Client - INFO - Received file data: 22 bytes
+2025-04-25 23:06:49,328 - CipherShare Client - INFO - Closed connection with ('127.0.0.1', 55989)
+2025-04-25 23:06:49,331 - CipherShare Client - INFO - File 'test.txt' uploaded successfully
+2025-04-25 23:06:49,331 - CipherShare Client - INFO - File 'test.txt' downloaded successfully
+2025-04-25 23:07:16,183 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:07:22,460 - CipherShare Client - INFO - Disconnected from server
+2025-04-25 23:08:26,391 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 23:08:29,648 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:08:33,276 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 23:08:34,571 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:08:42,194 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 23:08:43,654 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:09:51,223 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 23:09:52,790 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:09:56,820 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:09:58,589 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 23:09:59,716 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:10:24,449 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 23:10:26,148 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:10:28,721 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:10:29,707 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 23:10:30,387 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:10:48,349 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 23:10:52,055 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:10:54,036 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 23:10:55,232 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:10:56,728 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 23:10:59,039 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:11:22,009 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 23:11:23,951 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:11:27,437 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 23:11:28,610 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:11:38,494 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:11:39,760 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 23:11:41,018 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:11:41,985 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 23:11:44,189 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:12:05,573 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 23:12:06,739 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:12:07,507 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 23:12:08,425 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:12:13,144 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:12:24,386 - CipherShare Client - INFO - File 'test.txt' uploaded successfully
+2025-04-25 23:12:27,633 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:13:13,299 - CipherShare Client - INFO - Retrieved 1 available files
+2025-04-25 23:13:16,954 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:14:13,139 - CipherShare Client - INFO - Retrieved 1 available files
+2025-04-25 23:14:14,355 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:14:16,624 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:14:24,938 - CipherShare Client - INFO - Saved 0 shared files
+2025-04-25 23:14:24,938 - CipherShare Client - INFO - File 'test.txt' removed successfully
+2025-04-25 23:14:54,031 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:14:55,692 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 23:14:57,121 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:14:57,936 - CipherShare Client - INFO - Retrieved 0 available files
+2025-04-25 23:14:58,367 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:15:02,399 - CipherShare Client - INFO - Session is valid
+2025-04-25 23:15:05,337 - CipherShare Client - INFO - Disconnected from server

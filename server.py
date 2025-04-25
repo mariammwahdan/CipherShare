@@ -100,6 +100,33 @@ class DatabaseManager:
             logger.error(f"Error adding file: {e}")
             return False
     
+    def update_file(self, updated_file_info):
+        """Update a specific file's information"""
+        try:
+            files = self.get_files()
+            updated = False
+            
+            for i, file_info in enumerate(files):
+                if (file_info['filename'] == updated_file_info['filename'] and
+                    file_info['owner'] == updated_file_info['owner'] and
+                    file_info['ip'] == updated_file_info['ip']):
+                    # Update the file info
+                    files[i] = updated_file_info
+                    updated = True
+                    break
+            
+            if updated:
+                with open(self.files_db_path, 'w') as f:
+                    json.dump(files, f)
+                logger.info(f"Updated file info for {updated_file_info['filename']}")
+                return True
+            else:
+                logger.warning(f"File not found for update: {updated_file_info['filename']}")
+                return False
+        except Exception as e:
+            logger.error(f"Error updating file: {e}")
+            return False
+    
     def remove_file(self, username, filename, client_address):
         """Remove a file from the database"""
         try:
@@ -111,7 +138,7 @@ class DatabaseManager:
                 # or if it's shared by other clients
                 if (file_info['filename'] != filename or 
                     file_info['owner'] != username or 
-                    (file_info['ip'], file_info['port']) != client_address):
+                    file_info['ip'] != client_address[0]):
                     updated_files.append(file_info)
                 else:
                     file_found = True
@@ -129,13 +156,22 @@ class DatabaseManager:
         """Update the status of a client in all its files"""
         try:
             files = self.get_files()
-            for file_info in files:
-                if (file_info['ip'], file_info['port']) == client_address:
-                    file_info['online'] = status
+            updated = False
             
-            with open(self.files_db_path, 'w') as f:
-                json.dump(files, f)
-            return True
+            for file_info in files:
+                # Ensure we're matching on IP - don't match on port as it might change
+                if file_info['ip'] == client_address[0]:
+                    file_info['online'] = status
+                    updated = True
+            
+            if updated:
+                with open(self.files_db_path, 'w') as f:
+                    json.dump(files, f)
+                logger.info(f"Updated status to {status} for client at {client_address[0]}")
+                return True
+            else:
+                logger.warning(f"No files found for client at {client_address[0]}")
+                return False
         except Exception as e:
             logger.error(f"Error updating client status: {e}")
             return False
@@ -536,15 +572,27 @@ class ClientHandler:
         """Handle file upload request"""
         filename = message['filename']
         
+        # Get the file sharing port of the client (could be different from the connection port)
+        client_port = message.get('client_port', self.client_address[1])
+        logger.info(f"Client {self.username} is sharing file '{filename}' from port {client_port}")
+        
         # Check if file already exists
         existing_files = self.db_manager.get_files()
         for file_info in existing_files:
             if (file_info['filename'] == filename and 
                 file_info['owner'] == self.username and
-                (file_info['ip'], file_info['port']) == self.client_address):
-                self.send_response(MessageType.ERROR, {
-                    'message': 'You are already sharing this file'
-                })
+                file_info['ip'] == self.client_address[0]):
+                # Update the file info to ensure client is marked as online and port is current
+                file_info['online'] = True
+                file_info['port'] = client_port  # Update the port to the listening port
+                if self.db_manager.update_file(file_info):
+                    self.send_response(MessageType.SUCCESS, {
+                        'message': 'File info updated, you are still sharing this file'
+                    })
+                else:
+                    self.send_response(MessageType.ERROR, {
+                        'message': 'Failed to update file info'
+                    })
                 return
         
         # Add file to database
@@ -552,7 +600,7 @@ class ClientHandler:
             'filename': filename,
             'owner': self.username,
             'ip': self.client_address[0],
-            'port': self.client_address[1],
+            'port': client_port,  # Use the listening port, not the connection port
             'online': True,
             'uploaded_at': time.time()
         }
@@ -561,7 +609,7 @@ class ClientHandler:
             self.send_response(MessageType.SUCCESS, {
                 'message': f'File "{filename}" is now available for sharing'
             })
-            logger.info(f"User '{self.username}' uploaded file '{filename}'")
+            logger.info(f"User '{self.username}' uploaded file '{filename}' (port {client_port})")
         else:
             self.send_error("Failed to share file")
     
@@ -573,8 +621,11 @@ class ClientHandler:
         available_clients = []
         files = self.db_manager.get_files()
         
+        logger.info(f"Looking for file '{filename}' requested by '{self.username}'")
+        
         for file_info in files:
             if file_info['filename'] == filename and file_info['online']:
+                logger.info(f"Found match: owner={file_info['owner']}, ip={file_info['ip']}, port={file_info['port']}, online={file_info['online']}")
                 available_clients.append({
                     'owner': file_info['owner'],
                     'ip': file_info['ip'],
@@ -582,6 +633,7 @@ class ClientHandler:
                 })
         
         if not available_clients:
+            logger.warning(f"No online clients found with file '{filename}'")
             self.send_response(MessageType.ERROR, {
                 'message': f'File "{filename}" not found or no online clients have it'
             })
@@ -589,12 +641,14 @@ class ClientHandler:
         
         # Select the first available client
         selected_client = available_clients[0]
+        logger.info(f"Selected client: {selected_client['owner']} at {selected_client['ip']}:{selected_client['port']}")
         
         # Inform the selected client about the download request
         try:
             # Create a temporary socket to inform the file owner
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as temp_socket:
-                temp_socket.connect((selected_client['ip'], selected_client['port']))
+                temp_socket.settimeout(5)  # Set a timeout for connection attempts
+                temp_socket.connect((selected_client['ip'], int(selected_client['port'])))
                 
                 # Send file request notification
                 notification = {
@@ -609,13 +663,24 @@ class ClientHandler:
                 notification_bytes = json.dumps(notification).encode('utf-8')
                 length_prefix = len(notification_bytes).to_bytes(4, byteorder='big')
                 temp_socket.sendall(length_prefix + notification_bytes)
+                logger.info(f"Sent notification to file owner")
         except Exception as e:
             logger.error(f"Failed to notify file owner: {e}")
             # Mark the client as offline
-            self.db_manager.update_client_status((selected_client['ip'], selected_client['port']), False)
+            self.db_manager.update_client_status((selected_client['ip'], int(selected_client['port'])), False)
+            
             # Try again with another client if available
-            self.handle_download_file(message)
-            return
+            if len(available_clients) > 1:
+                logger.info(f"Trying next available client...")
+                # Remove the failed client and try again
+                message['_tried_clients'] = message.get('_tried_clients', []) + [selected_client]
+                self.handle_download_file(message)
+                return
+            else:
+                self.send_response(MessageType.ERROR, {
+                    'message': f'File "{filename}" found but all clients are unreachable'
+                })
+                return
         
         # Send the client info to the requester
         self.send_response(MessageType.SUCCESS, {

@@ -260,7 +260,8 @@ class FileSharingClient:
         message = {
             'type': MessageType.UPLOAD_FILE.name,
             'session_id': self.session_id,
-            'filename': filename
+            'filename': filename,
+            'client_port': self.client_port  # Send the listening port to the server
         }
         
         # Send upload request
@@ -296,11 +297,14 @@ class FileSharingClient:
         
         if response and response['type'] == MessageType.SUCCESS.name:
             client_info = response['data']['client_info']
+            logger.info(f"Received file source information: {client_info}")
             
             # Create socket to connect to file owner
             try:
                 file_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                file_socket.connect((client_info['ip'], client_info['port']))
+                file_socket.settimeout(10)  # Add timeout for connection
+                file_socket.connect((client_info['ip'], int(client_info['port'])))
+                logger.info(f"Connected to file source at {client_info['ip']}:{client_info['port']}")
                 
                 # Create file request message
                 file_request = {
@@ -311,9 +315,11 @@ class FileSharingClient:
                 
                 # Send file request with length prefix
                 self.send_data(file_socket, json.dumps(file_request))
+                logger.info(f"Sent file transfer request")
                 
                 # Receive file data
                 file_data = self.receive_file(file_socket)
+                logger.info(f"Received file data: {len(file_data) if file_data else 'None'} bytes")
                 
                 if file_data:
                     # Save file to downloaded directory
@@ -427,6 +433,7 @@ class FileSharingClient:
     def listen_for_file_transfers(self):
         """Listen for file transfer requests from other clients"""
         try:
+            logger.info(f"Starting to listen for file transfers on port {self.client_port}")
             while True:
                 # Accept connection from file requester
                 client_socket, client_address = self.listen_socket.accept()
@@ -444,16 +451,20 @@ class FileSharingClient:
         finally:
             if self.listen_socket:
                 self.listen_socket.close()
+                logger.info("File transfer listening socket closed")
     
     def handle_file_transfer(self, client_socket, client_address):
         """Handle file transfer request from another client"""
         try:
+            logger.info(f"Handling file transfer request from {client_address}")
             # Receive file request
             data = self.receive_data(client_socket)
             if not data:
+                logger.error("No data received in file transfer request")
                 return
             
             request = json.loads(data.decode('utf-8'))
+            logger.info(f"Received file transfer request: {request}")
             
             if request['type'] == MessageType.FILE_TRANSFER.name:
                 filename = request['filename']
@@ -464,12 +475,20 @@ class FileSharingClient:
                 # Check if we have the file
                 file_path = os.path.join(self.shared_files_path, filename)
                 if not os.path.isfile(file_path):
-                    logger.error(f"File '{filename}' not found")
+                    logger.error(f"File '{filename}' not found in shared directory")
+                    # Send error response
+                    error_response = {
+                        'type': MessageType.ERROR.name,
+                        'message': f"File '{filename}' not found"
+                    }
+                    self.send_data(client_socket, json.dumps(error_response))
                     return
                 
                 # Read file data
                 with open(file_path, 'rb') as f:
                     file_data = f.read()
+                
+                logger.info(f"Sending file '{filename}' ({len(file_data)} bytes) to {requester_username}")
                 
                 # Send file data
                 client_socket.sendall(len(file_data).to_bytes(4, byteorder='big'))
@@ -484,10 +503,28 @@ class FileSharingClient:
                 filename = request['filename']
                 
                 logger.info(f"File request notification: {requester_username} at {requester_ip}:{requester_port} will download '{filename}'")
+                
+                # Send acknowledgment
+                ack_response = {
+                    'type': MessageType.SUCCESS.name,
+                    'message': "Notification received"
+                }
+                self.send_data(client_socket, json.dumps(ack_response))
         except Exception as e:
             logger.error(f"File transfer error: {e}")
+            try:
+                # Try to send error response
+                error_response = {
+                    'type': MessageType.ERROR.name,
+                    'message': f"Transfer error: {str(e)}"
+                }
+                self.send_data(client_socket, json.dumps(error_response))
+            except:
+                pass
         finally:
             client_socket.close()
+            logger.info(f"Closed connection with {client_address}")
+    
     
     def receive_file(self, socket):
         """Receive file data from socket"""
