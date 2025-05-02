@@ -45,3 +45,18 @@
 2025-05-02 19:47:22,628 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
 2025-05-02 19:52:01,323 - CipherShare Server - INFO - Cleaned up 1 expired sessions
 2025-05-02 19:53:01,350 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-02 19:53:30,407 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-05-02 19:53:46,639 - CipherShare Server - INFO - New connection from ('127.0.0.1', 58762)
+2025-05-02 19:53:56,082 - CipherShare Server - INFO - New connection from ('127.0.0.1', 58764)
+2025-05-02 19:54:10,201 - CipherShare Server - INFO - User 'ahmedbaher22' logged in successfully from ('127.0.0.1', 58764)
+2025-05-02 19:54:30,881 - CipherShare Server - INFO - User 'shahd22' logged in successfully from ('127.0.0.1', 58762)
+2025-05-02 19:54:52,032 - CipherShare Server - INFO - Client ahmedbaher22 is sharing file 'test.txt' from port 58765
+2025-05-02 19:54:52,040 - CipherShare Server - INFO - Updated file info for test.txt
+2025-05-02 19:55:00,764 - CipherShare Server - INFO - Looking for file 'test.txt' requested by 'shahd22'
+2025-05-02 19:55:00,764 - CipherShare Server - INFO - Found match: owner=ahmedbaher22, ip=127.0.0.1, port=58765, online=True
+2025-05-02 19:55:00,764 - CipherShare Server - INFO - Selected client: ahmedbaher22 at 127.0.0.1:58765
+2025-05-02 19:55:00,764 - CipherShare Server - INFO - Sent notification to file owner
+2025-05-02 19:55:00,764 - CipherShare Server - INFO - User 'shahd22' requested download of 'test.txt' from 'ahmedbaher22'
+2025-05-02 19:55:01,021 - CipherShare Server - INFO - Client shahd22 is sharing file 'test.txt' from port 58763
+2025-05-02 19:55:01,021 - CipherShare Server - INFO - User 'shahd22' uploaded file 'test.txt' (port 58763)
+2025-05-02 20:00:30,456 - CipherShare Server - INFO - Cleaned up 2 expired sessions

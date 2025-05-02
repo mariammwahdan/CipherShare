@@ -101,3 +101,143 @@
 2025-05-02 19:47:18,890 - CipherShare Client - INFO - Retrieved 1 available files
 2025-05-02 19:47:20,523 - CipherShare Client - INFO - ============================================================
 2025-05-02 19:47:20,580 - CipherShare Client - INFO - ============================================================
+2025-05-02 19:53:46,639 - CipherShare Client - INFO - Loaded 0 shared files
+2025-05-02 19:53:46,639 - CipherShare Client - INFO - Connected to server at localhost:5555
+2025-05-02 19:53:46,639 - CipherShare Client - INFO - Listening for file transfers on port 58763
+2025-05-02 19:53:46,647 - CipherShare Client - INFO - Starting to listen for file transfers on port 58763
+2025-05-02 19:53:56,082 - CipherShare Client - INFO - Loaded 0 shared files
+2025-05-02 19:53:56,082 - CipherShare Client - INFO - Connected to server at localhost:5555
+2025-05-02 19:53:56,090 - CipherShare Client - INFO - Listening for file transfers on port 58765
+2025-05-02 19:53:56,091 - CipherShare Client - INFO - Starting to listen for file transfers on port 58765
+2025-05-02 19:54:10,201 - CipherShare Client - INFO - Logged in as ahmedbaher22
+2025-05-02 19:54:11,337 - CipherShare Client - INFO - Session is valid
+2025-05-02 19:54:30,881 - CipherShare Client - INFO - Logged in as shahd22
+2025-05-02 19:54:31,770 - CipherShare Client - INFO - Session is valid
+2025-05-02 19:54:33,936 - CipherShare Client - INFO - Retrieved 0 available files
+2025-05-02 19:54:36,952 - CipherShare Client - INFO - Session is valid
+2025-05-02 19:54:42,986 - CipherShare Client - INFO - Session is valid
+2025-05-02 19:54:52,040 - CipherShare Client - INFO - Saved 1 shared files
+2025-05-02 19:54:52,040 - CipherShare Client - INFO - File 'test.txt' uploaded successfully
+2025-05-02 19:54:53,415 - CipherShare Client - INFO - Session is valid
+2025-05-02 19:54:56,735 - CipherShare Client - INFO - Retrieved 1 available files
+2025-05-02 19:54:57,992 - CipherShare Client - INFO - Session is valid
+2025-05-02 19:54:59,516 - CipherShare Client - INFO - Retrieved 1 available files
+2025-05-02 19:55:00,764 - CipherShare Client - INFO - ============================================================
+2025-05-02 19:55:00,764 - CipherShare Client - INFO -  STARTING SECURE FILE DOWNLOAD PROCESS
+2025-05-02 19:55:00,764 - CipherShare Client - INFO - ============================================================
+2025-05-02 19:55:00,764 - CipherShare Client - INFO -  Sending download request to server
+2025-05-02 19:55:00,764 - CipherShare Client - INFO - Received connection from ('127.0.0.1', 58770)
+2025-05-02 19:55:00,764 - CipherShare Client - INFO - ============================================================
+2025-05-02 19:55:00,764 - CipherShare Client - INFO -  HANDLING INCOMING FILE TRANSFER REQUEST
+2025-05-02 19:55:00,764 - CipherShare Client - INFO -  Server provided file source: ahmedbaher22 at 127.0.0.1:58765
+2025-05-02 19:55:00,764 - CipherShare Client - INFO - ============================================================
+2025-05-02 19:55:00,764 - CipherShare Client - INFO - --------------------------------------------------
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  ESTABLISHING CONNECTION TO FILE OWNER
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  Received connection from ('127.0.0.1', 58770)
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  Received request of type: FILE_INFO
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  File request notification: shahd22 at 127.0.0.1:58762 will download 'test.txt'
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  Connected to file source at 127.0.0.1:58765
+2025-05-02 19:55:00,772 - CipherShare Client - INFO - Received connection from ('127.0.0.1', 58771)
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  Sent acknowledgment to server
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  Sent file transfer request for 'test.txt'
+2025-05-02 19:55:00,772 - CipherShare Client - INFO - --------------------------------------------------
+2025-05-02 19:55:00,772 - CipherShare Client - INFO - ============================================================
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  INITIATING DIFFIE-HELLMAN KEY EXCHANGE (RECEIVER)
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  Closed connection with ('127.0.0.1', 58770)
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  Initializing Diffie-Hellman key exchange
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  HANDLING INCOMING FILE TRANSFER REQUEST
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  Initializing Diffie-Hellman with 1024-bit parameters
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  Generated private key (random number)
+2025-05-02 19:55:00,772 - CipherShare Client - INFO - ============================================================
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  Received connection from ('127.0.0.1', 58771)
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  Received request of type: FILE_TRANSFER
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  File transfer request for 'test.txt' from shahd22
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  Reading file from shared directory
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  Read file: 22 bytes
+2025-05-02 19:55:00,772 - CipherShare Client - INFO - --------------------------------------------------
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  GENERATING FILE INTEGRITY HASH
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  Calculating SHA-256 hash for file integrity
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  Generated SHA-256 hash of file
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  Generated SHA-256 hash for integrity verification
+2025-05-02 19:55:00,772 - CipherShare Client - INFO - --------------------------------------------------
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  HANDLING DIFFIE-HELLMAN KEY EXCHANGE (SENDER)
+2025-05-02 19:55:00,772 - CipherShare Client - INFO -  Waiting for requester's public key...
+2025-05-02 19:55:00,789 - CipherShare Client - INFO -  Calculated public key using formula: g^private_key mod p
+2025-05-02 19:55:00,789 - CipherShare Client - INFO -  Sent our public key to file owner
+2025-05-02 19:55:00,789 - CipherShare Client - INFO -  Received requester's public key
+2025-05-02 19:55:00,789 - CipherShare Client - INFO -  Waiting for file owner's public key...
+2025-05-02 19:55:00,789 - CipherShare Client - INFO -  Initializing our Diffie-Hellman key exchange
+2025-05-02 19:55:00,789 - CipherShare Client - INFO -  Initializing Diffie-Hellman with 1024-bit parameters
+2025-05-02 19:55:00,797 - CipherShare Client - INFO -  Generated private key (random number)
+2025-05-02 19:55:00,818 - CipherShare Client - INFO -  Calculated public key using formula: g^private_key mod p
+2025-05-02 19:55:00,818 - CipherShare Client - INFO -  Sent our public key to requester
+2025-05-02 19:55:00,818 - CipherShare Client - INFO -  Received file owner's public key
+2025-05-02 19:55:00,818 - CipherShare Client - INFO -  Beginning shared key computation
+2025-05-02 19:55:00,818 - CipherShare Client - INFO -  Using peer's public key: 404... (showing last 3 digits)
+2025-05-02 19:55:00,818 - CipherShare Client - INFO -  Using peer's public key: 561... (showing last 3 digits)
+2025-05-02 19:55:00,852 - CipherShare Client - INFO -  Computed raw shared secret using formula: peer_public_key^private_key mod p
+2025-05-02 19:55:00,852 - CipherShare Client - INFO -  Derived 256-bit encryption key using SHA-256 hash of shared secret
+2025-05-02 19:55:00,852 - CipherShare Client - INFO -  Successfully computed shared encryption key
+2025-05-02 19:55:00,852 - CipherShare Client - INFO -  DIFFIE-HELLMAN KEY EXCHANGE COMPLETED
+2025-05-02 19:55:00,852 - CipherShare Client - INFO -  Computed raw shared secret using formula: peer_public_key^private_key mod p
+2025-05-02 19:55:00,852 - CipherShare Client - INFO - --------------------------------------------------
+2025-05-02 19:55:00,852 - CipherShare Client - INFO -  RECEIVING FILE INTEGRITY HASH
+2025-05-02 19:55:00,852 - CipherShare Client - INFO -  Derived 256-bit encryption key using SHA-256 hash of shared secret
+2025-05-02 19:55:00,852 - CipherShare Client - INFO -  Successfully computed shared encryption key
+2025-05-02 19:55:00,852 - CipherShare Client - INFO -  DIFFIE-HELLMAN KEY EXCHANGE COMPLETED
+2025-05-02 19:55:00,852 - CipherShare Client - INFO - --------------------------------------------------
+2025-05-02 19:55:00,860 - CipherShare Client - INFO -  SENDING FILE INTEGRITY HASH
+2025-05-02 19:55:00,860 - CipherShare Client - INFO -  Sent file hash for integrity verification
+2025-05-02 19:55:00,860 - CipherShare Client - INFO -  Received file integrity hash from sender
+2025-05-02 19:55:00,860 - CipherShare Client - INFO - --------------------------------------------------
+2025-05-02 19:55:00,860 - CipherShare Client - INFO - --------------------------------------------------
+2025-05-02 19:55:00,860 - CipherShare Client - INFO -  RECEIVING ENCRYPTED FILE
+2025-05-02 19:55:00,860 - CipherShare Client - INFO -  Waiting for encrypted file data...
+2025-05-02 19:55:00,860 - CipherShare Client - INFO -  ENCRYPTING FILE
+2025-05-02 19:55:00,869 - CipherShare Client - INFO -  Beginning file encryption with AES-256-CBC
+2025-05-02 19:55:00,878 - CipherShare Client - INFO -  Original file size: 22 bytes
+2025-05-02 19:55:00,878 - CipherShare Client - INFO -  Generated random 16-byte Initialization Vector (IV)
+2025-05-02 19:55:00,878 - CipherShare Client - INFO -  Applied PKCS7 padding to data (padded size: 32 bytes)
+2025-05-02 19:55:00,902 - CipherShare Client - INFO -  Created AES-256-CBC encryptor with the shared key
+2025-05-02 19:55:00,902 - CipherShare Client - INFO -  Encrypted file data (encrypted size: 32 bytes)
+2025-05-02 19:55:00,955 - CipherShare Client - INFO - --------------------------------------------------
+2025-05-02 19:55:00,955 - CipherShare Client - INFO -  SENDING ENCRYPTED FILE
+2025-05-02 19:55:00,964 - CipherShare Client - INFO -  Sending 48 bytes (IV + encrypted data)
+2025-05-02 19:55:00,964 - CipherShare Client - INFO -  File transfer complete
+2025-05-02 19:55:00,964 - CipherShare Client - INFO -  Received encrypted file: 48 bytes
+2025-05-02 19:55:00,964 - CipherShare Client - INFO - --------------------------------------------------
+2025-05-02 19:55:00,964 - CipherShare Client - INFO - ============================================================
+2025-05-02 19:55:00,964 - CipherShare Client - INFO -  SECURE FILE TRANSFER COMPLETED SUCCESSFULLY
+2025-05-02 19:55:00,964 - CipherShare Client - INFO -  DECRYPTING FILE
+==========================================
+2025-05-02 19:55:00,972 - CipherShare Client - INFO -  Extracted IV (16 bytes) and ciphertext (32 bytes)
+2025-05-02 19:55:00,972 - CipherShare Client - INFO -  Closed connection with ('127.0.0.1', 58771)
+2025-05-02 19:55:00,972 - CipherShare Client - INFO -  Beginning file decryption with AES-256-CBC
+2025-05-02 19:55:00,972 - CipherShare Client - INFO -  Encrypted file size: 32 bytes
+2025-05-02 19:55:00,996 - CipherShare Client - INFO -  Created AES-256-CBC decryptor with the shared key
+2025-05-02 19:55:01,004 - CipherShare Client - INFO -  Decrypted to padded data (padded size: 32 bytes)
+2025-05-02 19:55:01,005 - CipherShare Client - INFO -  Removed PKCS7 padding from data (final size: 22 bytes)
+2025-05-02 19:55:01,005 - CipherShare Client - INFO -  Successfully decrypted file (size: 22 bytes)
+2025-05-02 19:55:01,005 - CipherShare Client - INFO - --------------------------------------------------
+2025-05-02 19:55:01,005 - CipherShare Client - INFO -  VERIFYING FILE INTEGRITY
+2025-05-02 19:55:01,005 - CipherShare Client - INFO -  Verifying file integrity with SHA-256 hash
+2025-05-02 19:55:01,005 - CipherShare Client - INFO -  Calculating SHA-256 hash for file integrity
+2025-05-02 19:55:01,005 - CipherShare Client - INFO -  Generated SHA-256 hash of file
+2025-05-02 19:55:01,005 - CipherShare Client - INFO -  INTEGRITY VERIFIED: File hash matches expected value
+2025-05-02 19:55:01,005 - CipherShare Client - INFO -  File integrity verified - hash matches!
+2025-05-02 19:55:01,013 - CipherShare Client - INFO - --------------------------------------------------
+2025-05-02 19:55:01,013 - CipherShare Client - INFO -  SAVING DECRYPTED FILE
+2025-05-02 19:55:01,013 - CipherShare Client - INFO -  File saved to downloaded_files\test.txt
+2025-05-02 19:55:01,013 - CipherShare Client - INFO - Saved 1 shared files
+2025-05-02 19:55:01,013 - CipherShare Client - INFO -  Added file to shared files list
+2025-05-02 19:55:01,013 - CipherShare Client - INFO -  Registering file as available from this client
+2025-05-02 19:55:01,021 - CipherShare Client - INFO - File 'test.txt' uploaded successfully
+2025-05-02 19:55:01,021 - CipherShare Client - INFO - ============================================================
+2025-05-02 19:55:01,029 - CipherShare Client - INFO -  SECURE FILE DOWNLOAD COMPLETED SUCCESSFULLY
+2025-05-02 19:55:01,029 - CipherShare Client - INFO - ============================================================
+2025-05-02 19:55:01,029 - CipherShare Client - INFO -  Closed connection to file owner
+2025-05-02 19:55:10,655 - CipherShare Client - INFO - Session is valid
+2025-05-02 19:55:14,050 - CipherShare Client - INFO - Retrieved 2 available files
+2025-05-02 19:55:17,810 - CipherShare Client - INFO - Retrieved 2 available files
+2025-05-02 19:55:19,064 - CipherShare Client - INFO - Session is valid
+2025-05-02 19:55:21,482 - CipherShare Client - INFO - Session is valid
