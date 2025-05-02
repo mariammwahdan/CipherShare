@@ -5,7 +5,11 @@ import os
 import sys
 import time
 import logging
+import base64
 from enum import Enum, auto
+
+# Import the crypto utilities
+from simplified_crypto_utils import DiffieHellman, FileEncryption, FileIntegrity
 
 # Set up logging
 logging.basicConfig(
@@ -34,6 +38,10 @@ class MessageType(Enum):
     SESSION_CHECK = auto()
     FILE_TRANSFER = auto()
     FILE_TRANSFER_COMPLETE = auto()
+    # New message types for Phase 3
+    DH_INIT = auto()
+    DH_RESPONSE = auto()
+    FILE_HASH = auto()
 
 class ClientState(Enum):
     """Enum for different states of the client"""
@@ -233,7 +241,12 @@ class FileSharingClient:
         else:
             logger.info("Reconnected but session expired")
             return True, "Reconnected but need to login again"
-    
+
+
+
+
+
+
     def upload_file(self, file_path):
         """Inform the server about a file available for sharing"""
         if self.state != ClientState.AUTHENTICATED:
@@ -281,9 +294,13 @@ class FileSharingClient:
             return False, f"Upload failed: {error_msg}"
     
     def download_file(self, filename):
-        """Download a file from another client"""
+        """Download a file from another client with encryption and integrity verification"""
         if self.state != ClientState.AUTHENTICATED:
             return False, "Not authenticated"
+        
+        logger.info("=" * 60)
+        logger.info(" STARTING SECURE FILE DOWNLOAD PROCESS")
+        logger.info("=" * 60)
         
         # Create download request message
         message = {
@@ -293,18 +310,21 @@ class FileSharingClient:
         }
         
         # Send download request
+        logger.info(" Sending download request to server")
         response = self.send_and_receive(message)
         
         if response and response['type'] == MessageType.SUCCESS.name:
             client_info = response['data']['client_info']
-            logger.info(f"Received file source information: {client_info}")
+            logger.info(f" Server provided file source: {client_info['owner']} at {client_info['ip']}:{client_info['port']}")
             
             # Create socket to connect to file owner
             try:
+                logger.info("-" * 50)
+                logger.info(" ESTABLISHING CONNECTION TO FILE OWNER")
                 file_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                file_socket.settimeout(10)  # Add timeout for connection
+                file_socket.settimeout(15)  # Increased timeout for more reliability
                 file_socket.connect((client_info['ip'], int(client_info['port'])))
-                logger.info(f"Connected to file source at {client_info['ip']}:{client_info['port']}")
+                logger.info(f" Connected to file source at {client_info['ip']}:{client_info['port']}")
                 
                 # Create file request message
                 file_request = {
@@ -315,41 +335,385 @@ class FileSharingClient:
                 
                 # Send file request with length prefix
                 self.send_data(file_socket, json.dumps(file_request))
-                logger.info(f"Sent file transfer request")
+                logger.info(f" Sent file transfer request for '{filename}'")
                 
-                # Receive file data
-                file_data = self.receive_file(file_socket)
-                logger.info(f"Received file data: {len(file_data) if file_data else 'None'} bytes")
+                # --- Phase 3: Diffie-Hellman Key Exchange ---
+                logger.info("-" * 50)
+                logger.info(" INITIATING DIFFIE-HELLMAN KEY EXCHANGE (RECEIVER)")
                 
-                if file_data:
-                    # Save file to downloaded directory
-                    download_path = os.path.join(self.downloaded_files_path, filename)
-                    with open(download_path, 'wb') as f:
-                        f.write(file_data)
+                # Initialize Diffie-Hellman
+                logger.info(" Initializing Diffie-Hellman key exchange")
+                dh = DiffieHellman()
+                
+                # Send DH initialization with our public key
+                dh_init = {
+                    'type': MessageType.DH_INIT.name,
+                    'public_key': dh.get_public_key()
+                }
+                self.send_data(file_socket, json.dumps(dh_init))
+                logger.info(" Sent our public key to file owner")
+                
+                # Receive DH response with other client's public key
+                logger.info(" Waiting for file owner's public key...")
+                dh_data = self.receive_data(file_socket)
+                if not dh_data:
+                    logger.error(" No DH response received")
+                    return False, "Key exchange failed - no response from file owner"
+                
+                dh_response = json.loads(dh_data.decode('utf-8'))
+                if dh_response['type'] != MessageType.DH_RESPONSE.name:
+                    logger.error(f" Unexpected message type: {dh_response['type']}")
+                    return False, "Key exchange protocol error - incorrect response type"
+                
+                # Compute shared key
+                other_public_key = dh_response['public_key']
+                logger.info(" Received file owner's public key")
+                
+                shared_key = dh.compute_shared_key(other_public_key)
+                logger.info(" Successfully computed shared encryption key")
+                logger.info(" DIFFIE-HELLMAN KEY EXCHANGE COMPLETED")
+                
+                # --- Receive File Hash for Integrity Verification ---
+                logger.info("-" * 50)
+                logger.info(" RECEIVING FILE INTEGRITY HASH")
+                hash_data = self.receive_data(file_socket)
+                if not hash_data:
+                    logger.error(" No file hash received")
+                    return False, "Failed to receive file hash for integrity verification"
+                
+                hash_message = json.loads(hash_data.decode('utf-8'))
+                if hash_message['type'] != MessageType.FILE_HASH.name:
+                    logger.error(f" Unexpected message type: {hash_message['type']}")
+                    return False, "Protocol error during integrity verification"
+                
+                expected_hash = bytes.fromhex(hash_message['hash'])
+                logger.info(" Received file integrity hash from sender")
+                
+                # --- Receive Encrypted File ---
+                logger.info("-" * 50)
+                logger.info(" RECEIVING ENCRYPTED FILE")
+                logger.info(" Waiting for encrypted file data...")
+                encrypted_data = self.receive_file(file_socket)
+                
+                if encrypted_data:
+                    logger.info(f" Received encrypted file: {len(encrypted_data)} bytes")
                     
-                    # Add to shared files list
-                    if filename not in self.shared_files:
-                        self.shared_files.append(filename)
-                        self.save_shared_files()
+                    # Extract IV (first 16 bytes) and ciphertext
+                    logger.info("-" * 50)
+                    logger.info(" DECRYPTING FILE")
+                    iv = encrypted_data[:16]
+                    ciphertext = encrypted_data[16:]
+                    logger.info(f" Extracted IV (16 bytes) and ciphertext ({len(ciphertext)} bytes)")
                     
-                    # Upload the file to server to mark as available
-                    self.upload_file(download_path)
-                    
-                    logger.info(f"File '{filename}' downloaded successfully")
-                    return True, f"File '{filename}' downloaded successfully"
+                    # Decrypt file
+                    try:
+                        file_data = FileEncryption.decrypt_file(ciphertext, iv, shared_key)
+                        logger.info(f" Successfully decrypted file (size: {len(file_data)} bytes)")
+                        
+                        # Verify file integrity
+                        logger.info("-" * 50)
+                        logger.info(" VERIFYING FILE INTEGRITY")
+                        if not FileIntegrity.verify_hash(file_data, expected_hash):
+                            logger.error(" SECURITY ALERT: File integrity verification failed!")
+                            return False, "Security alert: File integrity verification failed - possible tampering detected"
+                        
+                        logger.info(" File integrity verified - hash matches!")
+                        
+                        # Save file to downloaded directory
+                        logger.info("-" * 50)
+                        logger.info(" SAVING DECRYPTED FILE")
+                        download_path = os.path.join(self.downloaded_files_path, filename)
+                        with open(download_path, 'wb') as f:
+                            f.write(file_data)
+                        logger.info(f" File saved to {download_path}")
+                        
+                        # Add to shared files list
+                        if filename not in self.shared_files:
+                            self.shared_files.append(filename)
+                            self.save_shared_files()
+                            logger.info(" Added file to shared files list")
+                        
+                        # Upload the file to server to mark as available
+                        logger.info(" Registering file as available from this client")
+                        self.upload_file(download_path)
+                        
+                        logger.info("=" * 60)
+                        logger.info(" SECURE FILE DOWNLOAD COMPLETED SUCCESSFULLY")
+                        logger.info("=" * 60)
+                        return True, f"File '{filename}' downloaded successfully with encryption and integrity verification"
+                    except Exception as e:
+                        logger.error(f" Decryption error: {e}")
+                        return False, f"Failed to decrypt file: {e}"
                 else:
-                    logger.error(f"Failed to download file '{filename}'")
-                    return False, f"Failed to download file '{filename}'"
+                    logger.error(" Failed to download encrypted file - no data received")
+                    return False, f"Failed to download encrypted file - connection error or timeout"
+            except socket.timeout:
+                logger.error(" Connection timed out during file transfer")
+                return False, "Connection timed out during file transfer"
             except Exception as e:
-                logger.error(f"Download error: {e}")
+                logger.error(f" Download error: {e}")
                 return False, f"Download error: {e}"
             finally:
                 if 'file_socket' in locals() and file_socket:
                     file_socket.close()
+                    logger.info(" Closed connection to file owner")
         else:
             error_msg = response['data']['message'] if response else "No response from server"
-            logger.error(f"Download request failed: {error_msg}")
+            logger.error(f" Download request failed: {error_msg}")
             return False, f"Download request failed: {error_msg}"
+
+    def listen_for_file_transfers(self):
+        """Listen for file transfer requests from other clients"""
+        try:
+            logger.info(f"Starting to listen for file transfers on port {self.client_port}")
+            while True:
+                # Accept connection from file requester
+                client_socket, client_address = self.listen_socket.accept()
+                logger.info(f"Received connection from {client_address}")
+                
+                # Start a new thread to handle file transfer
+                transfer_thread = threading.Thread(
+                    target=self.handle_file_transfer,
+                    args=(client_socket, client_address),
+                    daemon=True
+                )
+                transfer_thread.start()
+        except Exception as e:
+            logger.error(f"File transfer listening error: {e}")
+        finally:
+            if self.listen_socket:
+                self.listen_socket.close()
+                logger.info("File transfer listening socket closed")
+    
+    def handle_file_transfer(self, client_socket, client_address):
+        """Handle file transfer request from another client (with encryption and integrity verification)"""
+        try:
+            logger.info("=" * 60)
+            logger.info(" HANDLING INCOMING FILE TRANSFER REQUEST")
+            logger.info("=" * 60)
+            logger.info(f" Received connection from {client_address}")
+            
+            # Receive file request
+            data = self.receive_data(client_socket)
+            if not data:
+                logger.error(" No data received in file transfer request")
+                return
+            
+            request = json.loads(data.decode('utf-8'))
+            logger.info(f" Received request of type: {request['type']}")
+            
+            if request['type'] == MessageType.FILE_TRANSFER.name:
+                filename = request['filename']
+                requester_username = request['requester_username']
+                
+                logger.info(f" File transfer request for '{filename}' from {requester_username}")
+                
+                # Check if we have the file
+                file_path = os.path.join(self.shared_files_path, filename)
+                if not os.path.isfile(file_path):
+                    logger.error(f" File '{filename}' not found in shared directory")
+                    # Send error response
+                    error_response = {
+                        'type': MessageType.ERROR.name,
+                        'message': f"File '{filename}' not found"
+                    }
+                    self.send_data(client_socket, json.dumps(error_response))
+                    return
+                
+                # Read file data
+                logger.info(" Reading file from shared directory")
+                with open(file_path, 'rb') as f:
+                    file_data = f.read()
+                logger.info(f" Read file: {len(file_data)} bytes")
+                
+                # Calculate file hash before encryption for integrity verification
+                logger.info("-" * 50)
+                logger.info(" GENERATING FILE INTEGRITY HASH")
+                file_hash = FileIntegrity.calculate_hash(file_data)
+                logger.info(" Generated SHA-256 hash for integrity verification")
+                
+                # --- Phase 3: Diffie-Hellman Key Exchange ---
+                logger.info("-" * 50)
+                logger.info(" HANDLING DIFFIE-HELLMAN KEY EXCHANGE (SENDER)")
+                
+                # Receive DH initialization from client
+                logger.info(" Waiting for requester's public key...")
+                dh_data = self.receive_data(client_socket)
+                if not dh_data:
+                    logger.error(" No DH initialization received")
+                    return
+                
+                dh_init = json.loads(dh_data.decode('utf-8'))
+                if dh_init['type'] != MessageType.DH_INIT.name:
+                    logger.error(f" Unexpected message type: {dh_init['type']}")
+                    return
+                
+                logger.info(" Received requester's public key")
+                
+                # Initialize our DH 
+                logger.info(" Initializing our Diffie-Hellman key exchange")
+                dh = DiffieHellman()
+                
+                # Get peer's public key
+                other_public_key = dh_init['public_key']
+                
+                # Send our public key
+                dh_response = {
+                    'type': MessageType.DH_RESPONSE.name,
+                    'public_key': dh.get_public_key()
+                }
+                self.send_data(client_socket, json.dumps(dh_response))
+                logger.info(" Sent our public key to requester")
+                
+                # Compute shared key
+                shared_key = dh.compute_shared_key(other_public_key)
+                logger.info(" Successfully computed shared encryption key")
+                logger.info(" DIFFIE-HELLMAN KEY EXCHANGE COMPLETED")
+                
+                # Send file hash for integrity verification
+                logger.info("-" * 50)
+                logger.info(" SENDING FILE INTEGRITY HASH")
+                hash_message = {
+                    'type': MessageType.FILE_HASH.name,
+                    'hash': file_hash.hex()
+                }
+                self.send_data(client_socket, json.dumps(hash_message))
+                logger.info(" Sent file hash for integrity verification")
+                
+                # Encrypt the file
+                logger.info("-" * 50)
+                logger.info(" ENCRYPTING FILE")
+                iv, encrypted_data = FileEncryption.encrypt_file(file_data, shared_key)
+                logger.info(f" Encrypted file: {len(file_data)} bytes → {len(encrypted_data)} bytes")
+                
+                # Send encrypted file data with IV
+                logger.info("-" * 50)
+                logger.info(" SENDING ENCRYPTED FILE")
+                
+                # Format: [IV (16 bytes)][Encrypted Data]
+                transfer_data = iv + encrypted_data
+                
+                # Send with length prefix
+                logger.info(f" Sending {len(transfer_data)} bytes (IV + encrypted data)")
+                client_socket.sendall(len(transfer_data).to_bytes(4, byteorder='big'))
+                client_socket.sendall(transfer_data)
+                
+                logger.info(" File transfer complete")
+                logger.info("=" * 60)
+                logger.info(" SECURE FILE TRANSFER COMPLETED SUCCESSFULLY")
+                logger.info("=" * 60)
+                
+            elif request['type'] == MessageType.FILE_INFO.name:
+                # This is a notification from the server about an upcoming file transfer
+                requester_ip = request['requester_ip']
+                requester_port = request['requester_port']
+                requester_username = request['requester_username']
+                filename = request['filename']
+                
+                logger.info(f" File request notification: {requester_username} at {requester_ip}:{requester_port} will download '{filename}'")
+                
+                # Send acknowledgment
+                ack_response = {
+                    'type': MessageType.SUCCESS.name,
+                    'message': "Notification received"
+                }
+                self.send_data(client_socket, json.dumps(ack_response))
+                logger.info(" Sent acknowledgment to server")
+                
+        except Exception as e:
+            logger.error(f" File transfer error: {e}")
+            try:
+                # Try to send error response
+                error_response = {
+                    'type': MessageType.ERROR.name,
+                    'message': f"Transfer error: {str(e)}"
+                }
+                self.send_data(client_socket, json.dumps(error_response))
+            except:
+                pass
+        finally:
+            client_socket.close()
+            logger.info(f" Closed connection with {client_address}")
+    
+    def send_data(self, sock, data):
+        """Send data with length prefix"""
+        if isinstance(data, str):
+            data = data.encode('utf-8')
+        
+        # Send length prefix followed by data
+        length_prefix = len(data).to_bytes(4, byteorder='big')
+        sock.sendall(length_prefix + data)
+    
+    def receive_data(self, sock):
+        """Receive data with length prefix"""
+        # First receive the length of the message
+        length_prefix = sock.recv(4)
+        if not length_prefix:
+            return None
+        
+        # Convert length prefix to integer
+        message_length = int.from_bytes(length_prefix, byteorder='big')
+        
+        # Receive the actual message
+        chunks = []
+        bytes_received = 0
+        
+        while bytes_received < message_length:
+            chunk = sock.recv(min(4096, message_length - bytes_received))
+            if not chunk:
+                return None
+            chunks.append(chunk)
+            bytes_received += len(chunk)
+        
+        return b''.join(chunks)
+    
+    def receive_file(self, sock):
+        """Receive file data from socket"""
+        try:
+            # First receive the length of the file
+            length_bytes = sock.recv(4)
+            if not length_bytes:
+                return None
+            
+            file_length = int.from_bytes(length_bytes, byteorder='big')
+            
+            # Receive the file data
+            chunks = []
+            bytes_received = 0
+            
+            while bytes_received < file_length:
+                chunk = sock.recv(min(4096, file_length - bytes_received))
+                if not chunk:
+                    return None
+                chunks.append(chunk)
+                bytes_received += len(chunk)
+            
+            return b''.join(chunks)
+        except Exception as e:
+            logger.error(f"Receive file error: {e}")
+            return None
+    
+    def send_and_receive(self, message):
+        """Send a message to the server and receive the response"""
+        try:
+            # Send the message
+            self.send_data(self.server_socket, json.dumps(message))
+            
+            # Receive the response
+            response_data = self.receive_data(self.server_socket)
+            if not response_data:
+                logger.error("No response received from server")
+                return None
+            
+            # Parse the response
+            response = json.loads(response_data.decode('utf-8'))
+            return response
+        except Exception as e:
+            logger.error(f"Send and receive error: {e}")
+            return None
+
+
+
     
     def list_files(self):
         """List files available for download"""
@@ -429,176 +793,3 @@ class FileSharingClient:
             logger.info(f"Saved {len(self.shared_files)} shared files")
         except Exception as e:
             logger.error(f"Failed to save shared files list: {e}")
-    
-    def listen_for_file_transfers(self):
-        """Listen for file transfer requests from other clients"""
-        try:
-            logger.info(f"Starting to listen for file transfers on port {self.client_port}")
-            while True:
-                # Accept connection from file requester
-                client_socket, client_address = self.listen_socket.accept()
-                logger.info(f"Received connection from {client_address}")
-                
-                # Start a new thread to handle file transfer
-                transfer_thread = threading.Thread(
-                    target=self.handle_file_transfer,
-                    args=(client_socket, client_address),
-                    daemon=True
-                )
-                transfer_thread.start()
-        except Exception as e:
-            logger.error(f"File transfer listening error: {e}")
-        finally:
-            if self.listen_socket:
-                self.listen_socket.close()
-                logger.info("File transfer listening socket closed")
-    
-    def handle_file_transfer(self, client_socket, client_address):
-        """Handle file transfer request from another client"""
-        try:
-            logger.info(f"Handling file transfer request from {client_address}")
-            # Receive file request
-            data = self.receive_data(client_socket)
-            if not data:
-                logger.error("No data received in file transfer request")
-                return
-            
-            request = json.loads(data.decode('utf-8'))
-            logger.info(f"Received file transfer request: {request}")
-            
-            if request['type'] == MessageType.FILE_TRANSFER.name:
-                filename = request['filename']
-                requester_username = request['requester_username']
-                
-                logger.info(f"File transfer request for '{filename}' from {requester_username}")
-                
-                # Check if we have the file
-                file_path = os.path.join(self.shared_files_path, filename)
-                if not os.path.isfile(file_path):
-                    logger.error(f"File '{filename}' not found in shared directory")
-                    # Send error response
-                    error_response = {
-                        'type': MessageType.ERROR.name,
-                        'message': f"File '{filename}' not found"
-                    }
-                    self.send_data(client_socket, json.dumps(error_response))
-                    return
-                
-                # Read file data
-                with open(file_path, 'rb') as f:
-                    file_data = f.read()
-                
-                logger.info(f"Sending file '{filename}' ({len(file_data)} bytes) to {requester_username}")
-                
-                # Send file data
-                client_socket.sendall(len(file_data).to_bytes(4, byteorder='big'))
-                client_socket.sendall(file_data)
-                
-                logger.info(f"File '{filename}' sent to {requester_username}")
-            elif request['type'] == MessageType.FILE_INFO.name:
-                # This is a notification from the server about an upcoming file transfer
-                requester_ip = request['requester_ip']
-                requester_port = request['requester_port']
-                requester_username = request['requester_username']
-                filename = request['filename']
-                
-                logger.info(f"File request notification: {requester_username} at {requester_ip}:{requester_port} will download '{filename}'")
-                
-                # Send acknowledgment
-                ack_response = {
-                    'type': MessageType.SUCCESS.name,
-                    'message': "Notification received"
-                }
-                self.send_data(client_socket, json.dumps(ack_response))
-        except Exception as e:
-            logger.error(f"File transfer error: {e}")
-            try:
-                # Try to send error response
-                error_response = {
-                    'type': MessageType.ERROR.name,
-                    'message': f"Transfer error: {str(e)}"
-                }
-                self.send_data(client_socket, json.dumps(error_response))
-            except:
-                pass
-        finally:
-            client_socket.close()
-            logger.info(f"Closed connection with {client_address}")
-    
-    
-    def receive_file(self, socket):
-        """Receive file data from socket"""
-        try:
-            # First receive the length of the file
-            length_bytes = socket.recv(4)
-            if not length_bytes:
-                return None
-            
-            file_length = int.from_bytes(length_bytes, byteorder='big')
-            
-            # Receive the file data
-            chunks = []
-            bytes_received = 0
-            
-            while bytes_received < file_length:
-                chunk = socket.recv(min(4096, file_length - bytes_received))
-                if not chunk:
-                    return None
-                chunks.append(chunk)
-                bytes_received += len(chunk)
-            
-            return b''.join(chunks)
-        except Exception as e:
-            logger.error(f"Receive file error: {e}")
-            return None
-    
-    def send_and_receive(self, message):
-        """Send a message to the server and receive the response"""
-        try:
-            # Send the message
-            self.send_data(self.server_socket, json.dumps(message))
-            
-            # Receive the response
-            response_data = self.receive_data(self.server_socket)
-            if not response_data:
-                logger.error("No response received from server")
-                return None
-            
-            # Parse the response
-            response = json.loads(response_data.decode('utf-8'))
-            return response
-        except Exception as e:
-            logger.error(f"Send and receive error: {e}")
-            return None
-    
-    def send_data(self, sock, data):
-        """Send data with length prefix"""
-        if isinstance(data, str):
-            data = data.encode('utf-8')
-        
-        # Send length prefix followed by data
-        length_prefix = len(data).to_bytes(4, byteorder='big')
-        sock.sendall(length_prefix + data)
-    
-    def receive_data(self, sock):
-        """Receive data with length prefix"""
-        # First receive the length of the message
-        length_prefix = sock.recv(4)
-        if not length_prefix:
-            return None
-        
-        # Convert length prefix to integer
-        message_length = int.from_bytes(length_prefix, byteorder='big')
-        
-        # Receive the actual message
-        chunks = []
-        bytes_received = 0
-        
-        while bytes_received < message_length:
-            chunk = sock.recv(min(4096, message_length - bytes_received))
-            if not chunk:
-                return None
-            chunks.append(chunk)
-            bytes_received += len(chunk)
-        
-        return b''.join(chunks)
