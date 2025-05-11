@@ -6,6 +6,8 @@ import logging
 import time
 import hashlib
 import uuid
+from argon2 import PasswordHasher
+import secrets
 from enum import Enum, auto
 import datetime
 
@@ -339,11 +341,25 @@ class AuthManager:
     """Class to manage user authentication"""
     def __init__(self, db_manager):
         self.db_manager = db_manager
-    
-    def hash_password(self, password):
+        self.ph = PasswordHasher()
+
+    def hash_password_argon(self, password):
         """Hash a password using SHA-256 (for now, will upgrade to Argon2 later)"""
         # In a future phase, this will be upgraded to Argon2
-        return hashlib.sha256(password.encode()).hexdigest()
+        # return hashlib.sha256(password.encode()).hexdigest()
+        """Hash a password using Argon2"""
+        # Use Argon2id for password hashing
+        hashed_password = self.ph.hash(password)
+        return hashed_password
+
+    def verify_password(self, password, hashed_password):
+        """Verify a password using Argon2"""
+        try:
+            # Verify the password against the stored hash
+            self.ph.verify(hashed_password, password)
+            return True  # Password matches
+        except:
+            return False  # Password does not match
     
     def register_user(self, username, password, client_address):
         """Register a new user"""
@@ -352,7 +368,7 @@ class AuthManager:
             return None
         
         # Hash the password
-        hashed_password = self.hash_password(password)
+        hashed_password = self.hash_password_argon(password)
         
         # Create user info
         user_info = {
@@ -368,15 +384,28 @@ class AuthManager:
         if self.db_manager.add_user(user_info):
             return True
         return False
-    
+
+    # def authenticate_user(self, username, password):
+    #     """Authenticate a user"""
+    #     user = self.db_manager.get_user(username)
+    #     if user:
+    #         hashed_password = self.hash_password(password)
+    #         if user['password_hash'] == hashed_password:
+    #             return True
+    #     return False
     def authenticate_user(self, username, password):
-        """Authenticate a user"""
+        """Authenticate a user using Argon2"""
+        # Retrieve user from the database (including the password_hash)
         user = self.db_manager.get_user(username)
+
         if user:
-            hashed_password = self.hash_password(password)
-            if user['password_hash'] == hashed_password:
-                return True
-        return False
+            try:
+                # Verify the entered password against the stored hash using Argon2
+                self.ph.verify(user['password_hash'], password)
+                return True  # Password matches
+            except:
+                return False  # Password does not match (verification failed)
+        return False  # User not found
 
 
 class ClientHandler:
@@ -567,7 +596,7 @@ class ClientHandler:
         self.send_response(MessageType.ERROR, {
             'message': 'Session expired or invalid'
         })
-    
+
     def handle_upload_file(self, message):
         """Handle file upload request"""
         filename = message['filename']
@@ -602,7 +631,8 @@ class ClientHandler:
             'ip': self.client_address[0],
             'port': client_port,  # Use the listening port, not the connection port
             'online': True,
-            'uploaded_at': time.time()
+            'uploaded_at': time.time(),
+            'allowed_users': message.get('allowed_users', [])  # NEW
         }
         
         if self.db_manager.add_file(file_info):
@@ -622,7 +652,7 @@ class ClientHandler:
         files = self.db_manager.get_files()
         
         logger.info(f"Looking for file '{filename}' requested by '{self.username}'")
-        
+
         for file_info in files:
             if file_info['filename'] == filename and file_info['online']:
                 logger.info(f"Found match: owner={file_info['owner']}, ip={file_info['ip']}, port={file_info['port']}, online={file_info['online']}")
@@ -631,7 +661,7 @@ class ClientHandler:
                     'ip': file_info['ip'],
                     'port': file_info['port']
                 })
-        
+
         if not available_clients:
             logger.warning(f"No online clients found with file '{filename}'")
             self.send_response(MessageType.ERROR, {

@@ -60,3 +60,225 @@
 2025-05-02 19:55:01,021 - CipherShare Server - INFO - Client shahd22 is sharing file 'test.txt' from port 58763
 2025-05-02 19:55:01,021 - CipherShare Server - INFO - User 'shahd22' uploaded file 'test.txt' (port 58763)
 2025-05-02 20:00:30,456 - CipherShare Server - INFO - Cleaned up 2 expired sessions
+2025-05-11 08:33:54,696 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-05-11 08:47:20,883 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-05-11 08:47:33,152 - CipherShare Server - INFO - Server shutting down...
+2025-05-11 08:47:33,153 - CipherShare Server - INFO - Server stopped
+2025-05-11 08:49:25,843 - CipherShare Server - INFO - New connection from ('127.0.0.1', 51222)
+2025-05-11 08:49:43,046 - CipherShare Server - INFO - User 'donia' registered successfully from ('127.0.0.1', 51222)
+2025-05-11 08:50:42,023 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 08:50:42,030 - CipherShare Server - INFO - User 'donia' disconnected from ('127.0.0.1', 51222)
+2025-05-11 08:50:42,046 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 08:50:42,046 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 51222)
+2025-05-11 08:50:47,187 - CipherShare Server - INFO - New connection from ('127.0.0.1', 51325)
+2025-05-11 08:50:55,526 - CipherShare Server - INFO - User 'donia' logged in successfully from ('127.0.0.1', 51325)
+2025-05-11 08:52:34,493 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 08:52:34,494 - CipherShare Server - INFO - User 'donia' disconnected from ('127.0.0.1', 51325)
+2025-05-11 08:52:34,495 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 08:52:34,496 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 51325)
+2025-05-11 08:52:45,666 - CipherShare Server - INFO - New connection from ('127.0.0.1', 51354)
+2025-05-11 08:53:01,607 - CipherShare Server - ERROR - Error handling client ('127.0.0.1', 51354): [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-05-11 08:53:01,608 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 08:53:01,608 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 51354)
+2025-05-11 09:15:38,625 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-05-11 09:15:43,894 - CipherShare Server - INFO - New connection from ('127.0.0.1', 51551)
+2025-05-11 09:15:54,332 - CipherShare Server - INFO - User 'doniaa' registered successfully from ('127.0.0.1', 51551)
+2025-05-11 09:20:54,783 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-11 09:30:48,341 - CipherShare Server - ERROR - Error handling client ('127.0.0.1', 51551): [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-05-11 09:30:48,342 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 09:30:48,342 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 51551)
+2025-05-11 10:13:48,722 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-05-11 10:13:55,737 - CipherShare Server - INFO - New connection from ('127.0.0.1', 51754)
+2025-05-11 10:14:03,339 - CipherShare Server - INFO - User 'donia' logged in successfully from ('127.0.0.1', 51754)
+2025-05-11 10:14:40,001 - CipherShare Server - INFO - Client donia is sharing file 'newfile.txt' from port 51755
+2025-05-11 10:14:40,003 - CipherShare Server - INFO - User 'donia' uploaded file 'newfile.txt' (port 51755)
+2025-05-11 10:16:09,165 - CipherShare Server - INFO - Client donia is sharing file 'newfile.txt' from port 51755
+2025-05-11 10:16:09,169 - CipherShare Server - INFO - Updated file info for newfile.txt
+2025-05-11 10:16:47,378 - CipherShare Server - INFO - New connection from ('127.0.0.1', 51763)
+2025-05-11 10:17:01,476 - CipherShare Server - INFO - User 'mariamm' registered successfully from ('127.0.0.1', 51763)
+2025-05-11 10:17:18,546 - CipherShare Server - INFO - Looking for file 'newfile.txt' requested by 'mariamm'
+2025-05-11 10:17:18,546 - CipherShare Server - INFO - Found match: owner=donia, ip=127.0.0.1, port=51755, online=True
+2025-05-11 10:17:18,546 - CipherShare Server - INFO - Selected client: donia at 127.0.0.1:51755
+2025-05-11 10:17:18,547 - CipherShare Server - INFO - Sent notification to file owner
+2025-05-11 10:17:18,547 - CipherShare Server - INFO - User 'mariamm' requested download of 'newfile.txt' from 'donia'
+2025-05-11 10:21:33,983 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-05-11 10:21:38,106 - CipherShare Server - INFO - New connection from ('127.0.0.1', 51794)
+2025-05-11 10:21:45,025 - CipherShare Server - INFO - User 'donia' logged in successfully from ('127.0.0.1', 51794)
+2025-05-11 10:21:54,887 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-11 10:22:33,985 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-11 10:22:48,852 - CipherShare Server - INFO - Looking for file 'newfile.txt' requested by 'donia'
+2025-05-11 10:22:48,852 - CipherShare Server - INFO - Found match: owner=donia, ip=127.0.0.1, port=51755, online=True
+2025-05-11 10:22:48,853 - CipherShare Server - INFO - Selected client: donia at 127.0.0.1:51755
+2025-05-11 10:22:50,918 - CipherShare Server - ERROR - Failed to notify file owner: [WinError 10061] No connection could be made because the target machine actively refused it
+2025-05-11 10:22:50,920 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 10:23:23,841 - CipherShare Server - INFO - Client donia is sharing file 'newfile1.txt' from port 51795
+2025-05-11 10:23:23,842 - CipherShare Server - INFO - User 'donia' uploaded file 'newfile1.txt' (port 51795)
+2025-05-11 10:23:46,437 - CipherShare Server - INFO - New connection from ('127.0.0.1', 51800)
+2025-05-11 10:23:59,458 - CipherShare Server - INFO - User 'karim' registered successfully from ('127.0.0.1', 51800)
+2025-05-11 10:24:33,636 - CipherShare Server - INFO - Looking for file 'newfile1.txt' requested by 'karim'
+2025-05-11 10:24:33,636 - CipherShare Server - INFO - Found match: owner=donia, ip=127.0.0.1, port=51795, online=True
+2025-05-11 10:24:33,636 - CipherShare Server - INFO - Selected client: donia at 127.0.0.1:51795
+2025-05-11 10:24:33,656 - CipherShare Server - INFO - Sent notification to file owner
+2025-05-11 10:24:33,656 - CipherShare Server - INFO - User 'karim' requested download of 'newfile1.txt' from 'donia'
+2025-05-11 10:24:58,841 - CipherShare Server - INFO - Looking for file 'newfile1.txt' requested by 'karim'
+2025-05-11 10:24:58,842 - CipherShare Server - INFO - Found match: owner=donia, ip=127.0.0.1, port=51795, online=True
+2025-05-11 10:24:58,842 - CipherShare Server - INFO - Selected client: donia at 127.0.0.1:51795
+2025-05-11 10:24:58,843 - CipherShare Server - INFO - Sent notification to file owner
+2025-05-11 10:24:58,844 - CipherShare Server - INFO - User 'karim' requested download of 'newfile1.txt' from 'donia'
+2025-05-11 10:28:54,907 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-11 10:29:54,909 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-11 10:31:03,723 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-05-11 10:31:09,226 - CipherShare Server - INFO - New connection from ('127.0.0.1', 51829)
+2025-05-11 10:31:17,332 - CipherShare Server - INFO - User 'mariamm' logged in successfully from ('127.0.0.1', 51829)
+2025-05-11 10:31:23,915 - CipherShare Server - INFO - New connection from ('127.0.0.1', 51831)
+2025-05-11 10:31:37,824 - CipherShare Server - INFO - User 'donia' logged in successfully from ('127.0.0.1', 51831)
+2025-05-11 10:31:56,499 - CipherShare Server - INFO - Looking for file 'newfile1.txt' requested by 'mariamm'
+2025-05-11 10:31:56,499 - CipherShare Server - INFO - Found match: owner=donia, ip=127.0.0.1, port=51795, online=True
+2025-05-11 10:31:56,499 - CipherShare Server - INFO - Selected client: donia at 127.0.0.1:51795
+2025-05-11 10:31:58,549 - CipherShare Server - ERROR - Failed to notify file owner: [WinError 10061] No connection could be made because the target machine actively refused it
+2025-05-11 10:31:58,550 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 10:36:54,923 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-11 10:37:55,545 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-05-11 10:37:59,118 - CipherShare Server - INFO - New connection from ('127.0.0.1', 51858)
+2025-05-11 10:38:03,099 - CipherShare Server - INFO - New connection from ('127.0.0.1', 51860)
+2025-05-11 10:38:08,714 - CipherShare Server - INFO - User 'donia' logged in successfully from ('127.0.0.1', 51858)
+2025-05-11 10:38:28,911 - CipherShare Server - INFO - User 'mariamm' logged in successfully from ('127.0.0.1', 51860)
+2025-05-11 10:38:32,812 - CipherShare Server - ERROR - Error getting files: Expecting value: line 1 column 1 (char 0)
+2025-05-11 10:38:37,699 - CipherShare Server - ERROR - Error getting files: Expecting value: line 1 column 1 (char 0)
+2025-05-11 10:38:54,925 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-11 10:39:41,398 - CipherShare Server - ERROR - Error getting files: Expecting value: line 1 column 1 (char 0)
+2025-05-11 10:39:51,627 - CipherShare Server - ERROR - Error handling client ('127.0.0.1', 51858): [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-05-11 10:39:51,627 - CipherShare Server - ERROR - Error getting files: Expecting value: line 1 column 1 (char 0)
+2025-05-11 10:39:51,627 - CipherShare Server - WARNING - No files found for client at 127.0.0.1
+2025-05-11 10:39:51,627 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 51858)
+2025-05-11 10:39:54,162 - CipherShare Server - ERROR - Error handling client ('127.0.0.1', 51860): [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-05-11 10:39:54,162 - CipherShare Server - ERROR - Error getting files: Expecting value: line 1 column 1 (char 0)
+2025-05-11 10:39:54,162 - CipherShare Server - WARNING - No files found for client at 127.0.0.1
+2025-05-11 10:39:54,163 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 51860)
+2025-05-11 10:40:00,783 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-05-11 10:40:04,622 - CipherShare Server - INFO - New connection from ('127.0.0.1', 51864)
+2025-05-11 10:40:09,742 - CipherShare Server - INFO - User 'donia' logged in successfully from ('127.0.0.1', 51864)
+2025-05-11 10:40:15,066 - CipherShare Server - INFO - New connection from ('127.0.0.1', 51866)
+2025-05-11 10:40:21,912 - CipherShare Server - INFO - User 'mariamm' logged in successfully from ('127.0.0.1', 51866)
+2025-05-11 10:41:58,695 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-05-11 10:42:14,381 - CipherShare Server - INFO - New connection from ('127.0.0.1', 51880)
+2025-05-11 10:42:21,693 - CipherShare Server - INFO - New connection from ('127.0.0.1', 51884)
+2025-05-11 10:42:27,403 - CipherShare Server - INFO - User 'donia' logged in successfully from ('127.0.0.1', 51884)
+2025-05-11 10:42:44,637 - CipherShare Server - INFO - User 'mariamm' logged in successfully from ('127.0.0.1', 51880)
+2025-05-11 10:42:48,106 - CipherShare Server - ERROR - Error getting files: Expecting value: line 1 column 1 (char 0)
+2025-05-11 10:43:58,705 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-11 10:44:58,730 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-11 10:45:58,731 - CipherShare Server - INFO - Cleaned up 2 expired sessions
+2025-05-11 10:47:58,734 - CipherShare Server - INFO - Cleaned up 2 expired sessions
+2025-05-11 10:53:45,262 - CipherShare Server - ERROR - Error handling client ('127.0.0.1', 51884): [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-05-11 10:53:45,263 - CipherShare Server - ERROR - Error getting files: Expecting value: line 1 column 1 (char 0)
+2025-05-11 10:53:45,264 - CipherShare Server - WARNING - No files found for client at 127.0.0.1
+2025-05-11 10:53:45,264 - CipherShare Server - ERROR - Error handling client ('127.0.0.1', 51880): [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-05-11 10:53:45,264 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 51884)
+2025-05-11 10:53:45,265 - CipherShare Server - ERROR - Error getting files: Expecting value: line 1 column 1 (char 0)
+2025-05-11 10:53:45,266 - CipherShare Server - WARNING - No files found for client at 127.0.0.1
+2025-05-11 10:53:45,266 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 51880)
+2025-05-11 10:53:53,404 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-05-11 10:53:58,587 - CipherShare Server - INFO - New connection from ('127.0.0.1', 52063)
+2025-05-11 10:54:02,417 - CipherShare Server - INFO - New connection from ('127.0.0.1', 52065)
+2025-05-11 10:54:10,999 - CipherShare Server - INFO - User 'donia' logged in successfully from ('127.0.0.1', 52065)
+2025-05-11 10:54:18,379 - CipherShare Server - INFO - User 'mariamm' logged in successfully from ('127.0.0.1', 52063)
+2025-05-11 10:54:32,729 - CipherShare Server - INFO - Client mariamm is sharing file 'testfile.txt' from port 52064
+2025-05-11 10:54:32,729 - CipherShare Server - ERROR - Error getting files: Expecting value: line 1 column 1 (char 0)
+2025-05-11 10:54:32,731 - CipherShare Server - ERROR - Error getting files: Expecting value: line 1 column 1 (char 0)
+2025-05-11 10:54:32,732 - CipherShare Server - INFO - User 'mariamm' uploaded file 'testfile.txt' (port 52064)
+2025-05-11 10:58:28,841 - CipherShare Server - INFO - Looking for file 'testfile.txt' requested by 'donia'
+2025-05-11 10:58:28,841 - CipherShare Server - INFO - Found match: owner=mariamm, ip=127.0.0.1, port=52064, online=True
+2025-05-11 10:58:28,841 - CipherShare Server - INFO - Selected client: mariamm at 127.0.0.1:52064
+2025-05-11 10:58:28,843 - CipherShare Server - INFO - Sent notification to file owner
+2025-05-11 10:58:28,843 - CipherShare Server - INFO - User 'donia' requested download of 'testfile.txt' from 'mariamm'
+2025-05-11 10:59:53,422 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-11 11:03:53,437 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-11 11:04:55,062 - CipherShare Server - INFO - User 'mariamm' logged in successfully from ('127.0.0.1', 52065)
+2025-05-11 11:05:08,024 - CipherShare Server - ERROR - Error handling client ('127.0.0.1', 52065): [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-05-11 11:05:08,024 - CipherShare Server - ERROR - Error getting files: Expecting value: line 1 column 1 (char 0)
+2025-05-11 11:05:08,024 - CipherShare Server - WARNING - No files found for client at 127.0.0.1
+2025-05-11 11:05:08,025 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 52065)
+2025-05-11 11:05:10,286 - CipherShare Server - ERROR - Error handling client ('127.0.0.1', 52063): [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-05-11 11:06:40,715 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-05-11 11:06:46,385 - CipherShare Server - INFO - New connection from ('127.0.0.1', 52140)
+2025-05-11 11:06:49,502 - CipherShare Server - INFO - New connection from ('127.0.0.1', 52142)
+2025-05-11 11:06:58,447 - CipherShare Server - INFO - User 'mariamm' logged in successfully from ('127.0.0.1', 52140)
+2025-05-11 11:07:18,630 - CipherShare Server - INFO - User 'donia' logged in successfully from ('127.0.0.1', 52142)
+2025-05-11 11:07:23,191 - CipherShare Server - ERROR - Error getting files: Expecting value: line 1 column 1 (char 0)
+2025-05-11 11:07:58,055 - CipherShare Server - INFO - Client donia is sharing file 'newtestfile.txt' from port 52143
+2025-05-11 11:07:58,056 - CipherShare Server - ERROR - Error getting files: Expecting value: line 1 column 1 (char 0)
+2025-05-11 11:07:58,056 - CipherShare Server - ERROR - Error getting files: Expecting value: line 1 column 1 (char 0)
+2025-05-11 11:07:58,057 - CipherShare Server - INFO - User 'donia' uploaded file 'newtestfile.txt' (port 52143)
+2025-05-11 11:08:22,200 - CipherShare Server - INFO - Looking for file 'newtestfile.txt' requested by 'mariamm'
+2025-05-11 11:08:22,200 - CipherShare Server - INFO - Found match: owner=donia, ip=127.0.0.1, port=52143, online=True
+2025-05-11 11:08:22,201 - CipherShare Server - INFO - Selected client: donia at 127.0.0.1:52143
+2025-05-11 11:08:22,201 - CipherShare Server - INFO - Sent notification to file owner
+2025-05-11 11:08:22,202 - CipherShare Server - INFO - User 'mariamm' requested download of 'newtestfile.txt' from 'donia'
+2025-05-11 11:09:37,892 - CipherShare Server - INFO - Client donia is sharing file 'testfile2.txt' from port 52143
+2025-05-11 11:09:37,894 - CipherShare Server - INFO - User 'donia' uploaded file 'testfile2.txt' (port 52143)
+2025-05-11 11:09:48,970 - CipherShare Server - INFO - Looking for file 'testfile2.txt' requested by 'mariamm'
+2025-05-11 11:09:48,970 - CipherShare Server - INFO - Found match: owner=donia, ip=127.0.0.1, port=52143, online=True
+2025-05-11 11:09:48,971 - CipherShare Server - INFO - Selected client: donia at 127.0.0.1:52143
+2025-05-11 11:09:48,993 - CipherShare Server - INFO - Sent notification to file owner
+2025-05-11 11:09:48,993 - CipherShare Server - INFO - User 'mariamm' requested download of 'testfile2.txt' from 'donia'
+2025-05-11 11:10:40,774 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-11 11:10:54,042 - CipherShare Server - ERROR - Error handling client ('127.0.0.1', 52140): [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-05-11 11:10:54,044 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 11:10:54,044 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 52140)
+2025-05-11 11:10:55,493 - CipherShare Server - ERROR - Error handling client ('127.0.0.1', 52142): [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-05-11 11:10:55,501 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 11:10:55,501 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 52142)
+2025-05-11 13:24:46,553 - CipherShare Server - INFO - Cleaned up 2 expired sessions
+2025-05-11 13:24:46,554 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-05-11 13:24:51,572 - CipherShare Server - INFO - New connection from ('127.0.0.1', 53118)
+2025-05-11 13:25:30,382 - CipherShare Server - INFO - User 'donia' logged in successfully from ('127.0.0.1', 53118)
+2025-05-11 13:25:36,028 - CipherShare Server - INFO - New connection from ('127.0.0.1', 53122)
+2025-05-11 13:25:45,258 - CipherShare Server - INFO - User 'mariamm' logged in successfully from ('127.0.0.1', 53122)
+2025-05-11 13:26:39,458 - CipherShare Server - INFO - Client mariamm is sharing file 'test66.txt' from port 53123
+2025-05-11 13:26:39,459 - CipherShare Server - INFO - User 'mariamm' uploaded file 'test66.txt' (port 53123)
+2025-05-11 13:26:59,103 - CipherShare Server - INFO - Looking for file 'test66.txt' requested by 'donia'
+2025-05-11 13:26:59,103 - CipherShare Server - WARNING - Access denied for 'donia' to file 'test66.txt'
+2025-05-11 13:26:59,103 - CipherShare Server - WARNING - No online clients found with file 'test66.txt'
+2025-05-11 13:27:18,854 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 13:27:18,862 - CipherShare Server - INFO - User 'donia' disconnected from ('127.0.0.1', 53118)
+2025-05-11 13:27:18,882 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 13:27:18,882 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 53118)
+2025-05-11 13:27:22,415 - CipherShare Server - INFO - New connection from ('127.0.0.1', 53134)
+2025-05-11 13:27:29,718 - CipherShare Server - INFO - User 'donia' logged in successfully from ('127.0.0.1', 53134)
+2025-05-11 13:28:06,799 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 13:28:06,800 - CipherShare Server - INFO - User 'donia' disconnected from ('127.0.0.1', 53134)
+2025-05-11 13:28:06,801 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 13:28:06,802 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 53134)
+2025-05-11 13:28:09,450 - CipherShare Server - INFO - New connection from ('127.0.0.1', 53139)
+2025-05-11 13:28:14,619 - CipherShare Server - INFO - User 'mariamm' logged in successfully from ('127.0.0.1', 53139)
+2025-05-11 13:29:18,506 - CipherShare Server - ERROR - Error handling client ('127.0.0.1', 53122): [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-05-11 13:29:18,510 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 13:29:18,511 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 53122)
+2025-05-11 13:29:21,511 - CipherShare Server - ERROR - Error handling client ('127.0.0.1', 53139): [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-05-11 13:29:21,513 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 13:29:21,513 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 53139)
+2025-05-11 13:30:01,690 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-05-11 13:30:05,041 - CipherShare Server - INFO - New connection from ('127.0.0.1', 53144)
+2025-05-11 13:30:10,202 - CipherShare Server - INFO - User 'donia' logged in successfully from ('127.0.0.1', 53144)
+2025-05-11 13:30:19,999 - CipherShare Server - INFO - New connection from ('127.0.0.1', 53146)
+2025-05-11 13:30:25,362 - CipherShare Server - INFO - User 'mariamm' logged in successfully from ('127.0.0.1', 53146)
+2025-05-11 13:33:34,497 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-11 13:33:34,498 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-05-11 13:34:32,906 - CipherShare Server - INFO - New connection from ('127.0.0.1', 53164)
+2025-05-11 13:34:34,499 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-11 13:34:43,409 - CipherShare Server - INFO - User 'donia' logged in successfully from ('127.0.0.1', 53164)
+2025-05-11 13:34:52,516 - CipherShare Server - INFO - New connection from ('127.0.0.1', 53168)
+2025-05-11 13:34:59,235 - CipherShare Server - INFO - User 'mariamm' logged in successfully from ('127.0.0.1', 53168)
+2025-05-11 13:35:30,681 - CipherShare Server - INFO - Client mariamm is sharing file 'test1.txt' from port 53169
+2025-05-11 13:35:30,686 - CipherShare Server - INFO - User 'mariamm' uploaded file 'test1.txt' (port 53169)
+2025-05-11 13:35:34,502 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-11 13:36:25,003 - CipherShare Server - INFO - Looking for file 'test1.txt' requested by 'donia'
+2025-05-11 13:36:25,003 - CipherShare Server - INFO - Found match: owner=mariamm, ip=127.0.0.1, port=53169, online=True
+2025-05-11 13:36:25,003 - CipherShare Server - INFO - Selected client: mariamm at 127.0.0.1:53169
+2025-05-11 13:36:25,004 - CipherShare Server - INFO - Sent notification to file owner
+2025-05-11 13:36:25,004 - CipherShare Server - INFO - User 'donia' requested download of 'test1.txt' from 'mariamm'
+2025-05-11 13:36:34,504 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-11 13:41:34,513 - CipherShare Server - INFO - Cleaned up 2 expired sessions
+2025-05-11 14:13:48,828 - CipherShare Server - INFO - User 'habiba' registered successfully from ('127.0.0.1', 53164)
+2025-05-11 14:36:00,746 - CipherShare Server - INFO - Cleaned up 1 expired sessions
