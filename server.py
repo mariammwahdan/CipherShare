@@ -631,8 +631,7 @@ class ClientHandler:
             'ip': self.client_address[0],
             'port': client_port,  # Use the listening port, not the connection port
             'online': True,
-            'uploaded_at': time.time(),
-            'allowed_users': message.get('allowed_users', [])  # NEW
+            'uploaded_at': time.time()
         }
         
         if self.db_manager.add_file(file_info):

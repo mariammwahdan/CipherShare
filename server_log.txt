@@ -282,3 +282,41 @@
 2025-05-11 13:41:34,513 - CipherShare Server - INFO - Cleaned up 2 expired sessions
 2025-05-11 14:13:48,828 - CipherShare Server - INFO - User 'habiba' registered successfully from ('127.0.0.1', 53164)
 2025-05-11 14:36:00,746 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-11 15:34:12,905 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-05-11 15:34:21,614 - CipherShare Server - INFO - New connection from ('127.0.0.1', 54480)
+2025-05-11 15:35:17,185 - CipherShare Server - INFO - User 'mariaam' registered successfully from ('127.0.0.1', 54480)
+2025-05-11 15:35:27,122 - CipherShare Server - INFO - New connection from ('127.0.0.1', 54486)
+2025-05-11 15:35:46,499 - CipherShare Server - INFO - User 'doniia' registered successfully from ('127.0.0.1', 54486)
+2025-05-11 15:41:12,926 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-11 15:44:12,940 - CipherShare Server - INFO - Cleaned up 1 expired sessions
+2025-05-11 16:22:35,274 - CipherShare Server - INFO - Server started on 0.0.0.0:5555
+2025-05-11 16:22:43,704 - CipherShare Server - INFO - New connection from ('127.0.0.1', 55224)
+2025-05-11 16:22:47,088 - CipherShare Server - INFO - New connection from ('127.0.0.1', 55226)
+2025-05-11 16:23:00,125 - CipherShare Server - INFO - User 'lamy' registered successfully from ('127.0.0.1', 55224)
+2025-05-11 16:23:10,045 - CipherShare Server - INFO - User 'lamia' registered successfully from ('127.0.0.1', 55226)
+2025-05-11 16:24:46,338 - CipherShare Server - INFO - Client lamia is sharing file 'testfile.txt' from port 55227
+2025-05-11 16:24:46,339 - CipherShare Server - INFO - User 'lamia' uploaded file 'testfile.txt' (port 55227)
+2025-05-11 16:25:06,352 - CipherShare Server - INFO - Looking for file 'test1.txt' requested by 'lamy'
+2025-05-11 16:25:06,352 - CipherShare Server - INFO - Found match: owner=mariamm, ip=127.0.0.1, port=53169, online=True
+2025-05-11 16:25:06,352 - CipherShare Server - INFO - Selected client: mariamm at 127.0.0.1:53169
+2025-05-11 16:25:08,395 - CipherShare Server - ERROR - Failed to notify file owner: [WinError 10061] No connection could be made because the target machine actively refused it
+2025-05-11 16:25:08,399 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 16:29:06,542 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 16:29:06,552 - CipherShare Server - INFO - User 'lamy' disconnected from ('127.0.0.1', 55224)
+2025-05-11 16:29:06,554 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 16:29:06,554 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 55224)
+2025-05-11 16:29:08,899 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 16:29:08,908 - CipherShare Server - INFO - User 'lamia' disconnected from ('127.0.0.1', 55226)
+2025-05-11 16:29:08,910 - CipherShare Server - INFO - Updated status to False for client at 127.0.0.1
+2025-05-11 16:29:08,910 - CipherShare Server - INFO - Connection closed with client ('127.0.0.1', 55226)
+2025-05-11 16:29:15,021 - CipherShare Server - INFO - New connection from ('127.0.0.1', 55253)
+2025-05-11 16:29:17,815 - CipherShare Server - INFO - New connection from ('127.0.0.1', 55255)
+2025-05-11 16:29:47,213 - CipherShare Server - INFO - User 'lamy' logged in successfully from ('127.0.0.1', 55253)
+2025-05-11 16:29:54,228 - CipherShare Server - INFO - User 'lamia' logged in successfully from ('127.0.0.1', 55255)
+2025-05-11 16:30:02,092 - CipherShare Server - INFO - Client lamia is sharing file 'tests2.txt' from port 55256
+2025-05-11 16:30:02,094 - CipherShare Server - INFO - User 'lamia' uploaded file 'tests2.txt' (port 55256)
+2025-05-11 16:30:11,898 - CipherShare Server - INFO - Looking for file 'tests2.txt' requested by 'lamy'
+2025-05-11 16:30:11,898 - CipherShare Server - INFO - Found match: owner=lamia, ip=127.0.0.1, port=55256, online=True
+2025-05-11 16:30:11,898 - CipherShare Server - INFO - Selected client: lamia at 127.0.0.1:55256
+2025-05-11 16:30:11,898 - CipherShare Server - INFO - Sent notification to file owner
+2025-05-11 16:30:11,899 - CipherShare Server - INFO - User 'lamy' requested download of 'tests2.txt' from 'lamia'
